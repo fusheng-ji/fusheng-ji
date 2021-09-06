@@ -41,41 +41,17 @@
   </a>
   <br><br>
 -->
-  <strong>Check out my work below!</strong>
-  <br><br>
-  <a href="https://github.com/fusheng-ji">
-    <img src="https://badges.pufler.dev/visits/fusheng-ji/fusheng-ji?style=flat-square&color=black&logo=github">
-  </a>
-  <a href="https://github.com/fusheng-ji">
-    <img src="https://badges.pufler.dev/years/fusheng-ji?style=flat-square&color=black&logo=github">
-  </a>
-  <a href="https://github.com/fusheng-ji?tab=repositories">
-    <img src="https://badges.pufler.dev/repos/fusheng-ji?style=flat-square&color=black&logo=github">
-  </a>
-  <a href="https://gist.github.com/fusheng-ji">
-    <img src="https://badges.pufler.dev/gists/fusheng-ji?style=flat-square&color=black&logo=github">
-  </a>
-  <a href="https://github.com/fusheng-ji">
-    <img src="https://badges.pufler.dev/commits/monthly/fusheng-ji?style=flat-square&color=black&logo=github">
-  </a>
-</p>
 
-<h2></h2>
 
 <img align="right" alt="GIF" src="https://github.com/abhisheknaiidu/abhisheknaiidu/blob/master/code.gif?raw=true" width="343" height="220" title="Do what you like, and do it best!"> &nbsp;&nbsp;&nbsp;&nbsp;
 
-<!-- stackoverflow profile
-<a href="https://stackoverflow.com/users/8317261/charmve"><img align="right" alt="Profile of Charmve (张伟) on StackOverflow" src="https://stackoverflow.com/users/flair/8317261.png"></a>-->
  
 **Languages and Frameworks**
 
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/cpp/cpp.png" alt="C++" title="C++"></code>
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" alt="Python" title="Python"></code>
-<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/json/json.png" alt="JSON" title="JSON"></code>
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png" alt="Git" title="Git"></code>
-<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/qt/qt.png" alt="Qt" title="Qt"></code>
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png" alt="Docker" title="Docker"></code>
-<code><img height="20" src="OctoCharmve/pytorch-logo.png" alt="PyTorch" title="PyTorch"></code>
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/tensorflow/tensorflow.png" alt="TensorFlow" title="TensorFlow"></code>
 
 
