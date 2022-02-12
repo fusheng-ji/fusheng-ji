@@ -1,7 +1,7 @@
 ## Hi, 👋  I'm <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">wenboji (fusheng-ji)</a> 
 
-<img align="left" alt="GIF" src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="60" title="Say HI"> 
-<em><b>Stay Hungry,Stay Foolish!</b></em>
+<img align="left" alt="GIF" src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="80" title="Say HI"> 
+<em><b>Stay Hungry, Stay Foolish!</b></em>
 <br>
 <em><b>I am interest in working with outstanding person and do well in team work.</em>
 <br>
