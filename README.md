@@ -7,7 +7,7 @@
 <br>
 <em>👉 BTW, I often share my thought through <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">My Blog</a> in chinese, wish you cloud find something valuable.</em>
 <br>
-<em>**Stay Hungryhungry🤗, Stay Foolish🧐!**</em>
+**Stay Hungryhungry🤗, Stay Foolish🧐!**
 <br>
 
 
