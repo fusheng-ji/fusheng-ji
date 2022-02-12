@@ -5,9 +5,9 @@
 <br>
 <em>💬 My email is wenboji_rex (at) qq (dot) com, if you have any question or advice or anything else, feel free to contact me :).</em>
 <br>
-<em>👉 BTW, I often share my thought through <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">My Blog</a> in chinese, wish you cloud find something valuable.</em>
+<em>👉 BTW, I often share my thought ✨ through <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">My Blog</a> in chinese, wish you cloud find something valuable.</em>
 <br>
-**Stay Hungryhungry🤗, Stay Foolish🧐!**
+<em align="center">Stay Hungryhungry🤗, Stay Foolish🧐!</em>
 <br>
 
 
@@ -53,23 +53,3 @@
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/ubuntu/ubuntu.png" alt="Ubuntu" title="Ubuntu"></code>
   
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/macos/macos.png" alt="MacOS" title="MacOS"></code>
-
-
-<br>
-
-
-
-<!--
-**fusheng-ji/fusheng-ji** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
--  Ask me about ...
-- 📫 How to reach me: ...
--  Pronouns: ...
-- ⚡ Fun fact: ...
--->
