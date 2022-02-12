@@ -1,7 +1,7 @@
 ## Hi, 👋  I'm <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">wenboji (fusheng-ji)</a> 
 
 <img align="left" alt="GIF" src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="80" title="Say HI"> 
-<em>Stay Hungryhungry🤗, Stay Foolish🧐!</em>
+<em>Stay Hungry 🤗, Stay Foolish 🧐!</em>
 <br>
 <em>😄 I am interest in working with outstanding person and do well in team work.</em>
 <br>
@@ -23,8 +23,7 @@
 
  
 **Languages and Frameworks**
-
-<code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/cpp/cpp.png" alt="C++" title="C++"></code> 
+<code><img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/cpp/cpp.png" alt="C++" title="C++"></code> 
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/a1b6b508cca4e45f4d4102623957b552f872da89/topics/cuda/cuda.png" alt="cuda" title="cuda"></code>
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" alt="Python" title="Python"></code>
 <br>
@@ -38,7 +37,6 @@
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/matlab/matlab.png" alt="Matlab" title="Matlab"></code>
 <br>
 **Tools and Environments**
-
 <code><img height="20" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png" alt="VSCode" title="VSCode"></code>
 <code><img height="20" src="https://images.nowcoder.com/images/20180629/0_1530258305740_67F7BB46DE9FC78164CA628F2CE05C37" alt="PyCharm" title="PyCharm"></code>
 <br>
