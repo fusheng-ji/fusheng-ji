@@ -23,10 +23,11 @@
 
  
 **Languages and Frameworks**
-
+<code>
 <img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/cpp/cpp.png" alt="C++" title="C++">
 <img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" alt="Python" title="Python">
 <img height="30" src="https://raw.githubusercontent.com/github/explore/a1b6b508cca4e45f4d4102623957b552f872da89/topics/cuda/cuda.png" alt="cuda" title="cuda">
+ </code>
 <br>
 <img height="30" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/tensorflow/tensorflow.png" alt="TensorFlow" title="TensorFlow">
 <img height="30" src="https://raw.githubusercontent.com/github/explore/224672533a7f836ad6bf142e4dee61217cfc100e/topics/pytorch/pytorch.png" alt="pytorch" title="pytorch">
