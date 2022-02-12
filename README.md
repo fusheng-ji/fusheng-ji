@@ -1,8 +1,13 @@
 ## Hi, 👋  I'm <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">wenboji (fusheng-ji)</a> 
 
-<img align="left" alt="GIF" src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="60" title="Say HI"> <em><b>I am interest in working with outstanding person and do well in team work. </em>
-<br><em>My email is wenboji_rex (at) qq (dot) com, feel free to contact me :).</em>
-<br><em>BTW, I often share my thought through <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">My Blog</a> in chinese, wish you cloud find something valuable.</em>
+<img align="left" alt="GIF" src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="60" title="Say HI"> 
+<em><b>Stay Hungry,Stay Foolish!</b></em>
+<br>
+<em><b>I am interest in working with outstanding person and do well in team work.</em>
+<br>
+<em>My email is wenboji_rex (at) qq (dot) com, if you have any question or advice or anything else, feel free to contact me :).</em>
+<br>
+<em>BTW, I often share my thought through <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">My Blog</a> in chinese, wish you cloud find something valuable.</em>
 <br>
 
 
