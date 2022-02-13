@@ -1,13 +1,14 @@
-## Hi, 👋  I'm <a href="https://fusheng-ji.github.io/" target="_blank">wenboji (fusheng-ji)</a> 
+## Hi, 👋  I'm <a href="https://fusheng-ji.github.io/" target="_blank">Wenbo Ji (fusheng-ji)</a> 
 
 <!-- <img align="left" alt="GIF" src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="80" title="Say HI">  -->
-<img align="center" alt="JPG" src="https://user-images.githubusercontent.com/36562829/153739458-8211699c-4b67-4b41-898f-914bf40b48e8.jpg" width="600" title="Say HI">
+<p align="center">
+<img  alt="JPG" src="https://user-images.githubusercontent.com/36562829/153739458-8211699c-4b67-4b41-898f-914bf40b48e8.jpg" width="600" title="Say HI">
+</p>
 
 
-<br>
 <em>😄 I am interest in working with outstanding person and do well in team work.</em>
 <br>
-<em>💬 My email is wenboji_rex (at) qq (dot) com, if you have any question or advice or anything else, feel free to contact me :).</em>
+<em>💬 My email is wenboji0420 (at) gmail (dot) com, if you have any question or advice or anything else, feel free to contact me :).</em>
 <br>
 <em>👉 BTW, I often share my thought ✨ through <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">My Blog</a> in chinese, wish you could find something fascinating.</em>
 <br>
