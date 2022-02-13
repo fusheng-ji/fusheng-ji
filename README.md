@@ -1,7 +1,7 @@
 ## Hi, 👋  I'm <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">wenboji (fusheng-ji)</a> 
 
 <!-- <img align="left" alt="GIF" src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="80" title="Say HI">  -->
-<img align="center" alt="JPG" src="https://user-images.githubusercontent.com/36562829/153739458-8211699c-4b67-4b41-898f-914bf40b48e8.jpg" width="500" title="Say HI">
+<img align="center" alt="JPG" src="https://user-images.githubusercontent.com/36562829/153739458-8211699c-4b67-4b41-898f-914bf40b48e8.jpg" width="600" title="Say HI">
 
 
 <br>
