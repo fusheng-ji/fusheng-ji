@@ -26,6 +26,8 @@
 
 **Stay Hungry 🤗, Stay Foolish 🧐!**
 
+**Philosophy is the activity of working out the right way of thinking about things.**
+
 **Languages and Frameworks**
 
 <code>
