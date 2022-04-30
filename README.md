@@ -6,9 +6,9 @@
 </p>
 
 
-<em>😄 I am interest in working with outstanding person and do well in team work.</em>
+<em>😄 I am always looking for internship and collaborate.🙋‍♂️🙋‍♂️</em>
 <br>
-<em>💬 My email is wenboji0420 (at) gmail (dot) com, if you have any question or advice or anything else, feel free to contact me :).</em>
+<em>💬 My email is wenboji0420 (at) gmail (dot) com, feel free to contact me :).</em>
 <br>
 <em>👉 BTW, I often share my thought ✨ through <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">My Blog</a> in chinese, wish you could find something fascinating.</em>
 <br>
