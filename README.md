@@ -12,6 +12,7 @@
 <br>
 <em>👉 BTW, I often share my thought ✨ through <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">My Blog</a> in chinese, wish you could find something fascinating.</em>
 <br>
+<em>In any language: English/中文/Deutsch/日本語
 
 
 
