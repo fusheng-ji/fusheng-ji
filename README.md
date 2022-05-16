@@ -40,11 +40,7 @@
   <img height="30" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white" alt="pytorch" title="pytorch">
   <img height="30" src="https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white" title="jupyter-notebook">
  </code>
-  | 
-<code>
-<img height="30" src="https://img.shields.io/badge/OpenGL-%23FFFFFF.svg?style=for-the-badge&logo=opengl" alt="opengl" title="opengl">
-<img height="30" src="https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV" title="OpenCV">
- </code>
+
  
  
  
@@ -61,7 +57,13 @@
 <img height="30" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" title="Docker">
 <img height="30" src="https://img.shields.io/badge/VIM-%2311AB00.svg?style=for-the-badge&logo=vim&logoColor=white" alt="Vim" title="Vim">
 </code>
-
+  | 
+<code>
+<img height="30" src="https://img.shields.io/badge/OpenGL-%23FFFFFF.svg?style=for-the-badge&logo=opengl" alt="opengl" title="opengl">
+<img height="30" src="https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV" title="OpenCV">
+</code>
+  
+  
 ****
   
 <code>
