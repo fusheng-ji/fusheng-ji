@@ -6,7 +6,7 @@
 </p>
 
 
-<em>😄 I am always looking for internship and collaborate.🙋‍♂️🙋‍♂️</em>
+<em>😄 I am looking for internship and collaborate.🙋‍♂️🙋‍♂️</em>
 <br>
 <em>💬 My email is wenboji0420 (at) gmail (dot) com, feel free to contact me :).</em>
 <br>
