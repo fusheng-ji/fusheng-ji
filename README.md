@@ -1,3 +1,4 @@
+![header](https://capsule-render.vercel.app/api?type=waving&&color=gradient&height=80&section=header&fontSize=90) 
 ## Hi, 👋  I'm <a href="https://fusheng-ji.github.io/" target="_blank">Wenbo Ji (嵇文博)</a> 
 
 <!-- <img align="left" alt="GIF" src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="80" title="Say HI">  -->
