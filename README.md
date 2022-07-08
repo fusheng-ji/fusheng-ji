@@ -6,7 +6,8 @@
 <img  alt="JPG" src="https://user-images.githubusercontent.com/36562829/153739458-8211699c-4b67-4b41-898f-914bf40b48e8.jpg" width="600" title="Say HI">
 </p>
 
-
+<em>🙋‍♂️I am a Second-year Computer Science Master's student at CAD Research Center, Tongji University. 
+<br>
 <em>😄  I am looking for an internship and collaboration.🙋‍♂️🙋‍♂️</em>
 <br>
 <em>💬 My email is wenboji0420 (at) gmail (dot) com, feel free to contact me :).</em>
