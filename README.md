@@ -7,11 +7,11 @@
 </p>
 
 
-<em>😄 I am looking for internship and collaborate.🙋‍♂️🙋‍♂️</em>
+<em>😄  I am looking for an internship and collaboration.🙋‍♂️🙋‍♂️</em>
 <br>
 <em>💬 My email is wenboji0420 (at) gmail (dot) com, feel free to contact me :).</em>
 <br>
-<em>👉 BTW, I often share my thought ✨ through <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">My Blog</a> in chinese, wish you could find something fascinating.</em>
+<em>👉 BTW, I often share my thought ✨ through <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">My Blog</a> in Chinese, wish you could find something fascinating.</em>
 <br>
 <em>🔊Language: English/中文/Deutsch/日本語
 
@@ -68,7 +68,6 @@
 <img height="30" src="https://img.shields.io/badge/OpenGL-%23FFFFFF.svg?style=for-the-badge&logo=opengl" alt="opengl" title="opengl">
 <img height="30" src="https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV" title="OpenCV">
   <img height="30" src="https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white" alt="Cmake" title="Cmake">
-  <img height="30" src="https://img.shields.io/badge/ros-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white" alt="ROS" title="ROS">
 </code>
   
   
