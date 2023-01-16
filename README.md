@@ -14,7 +14,7 @@
 <br><br>
 <em>👉 BTW, I often share my thought ✨ through <a href="https://www.cnblogs.com/fusheng-rextimmy/" target="_blank">My Blog</a> in Chinese, wish you could find something fascinating.</em>
 <br><br>
-<em>🔊  Language: English🇬🇧/中文🇨🇳/Deutsch🇩🇪/日本語🇯🇵
+<em>🖖  Language: English 🇬🇧 / 中文 🇨🇳 / Deutsch 🇩🇪 / 日本語 🇯🇵
 
 
 
