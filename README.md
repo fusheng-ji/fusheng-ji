@@ -8,6 +8,8 @@
 
 <em>🙋‍♂️  I am a Second-year Computer Science Master's student at CAD Research Center, Tongji University. 
 <br><br>
+<em>🙋‍♂️  I will join Technical University of Munich as a Electrical Engineering and Information Technology Master's student in w2023/24. 
+<br><br>
 <em>😄  I am looking for an internship and collaboration.🙋‍♂️🙋‍♂️</em>
 <br><br>
 <em>💬 My email is wenboji0420 (at) gmail (dot) com, feel free to contact me :).</em>
