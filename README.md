@@ -1,32 +1,36 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&&color=gradient&height=80&section=header&fontSize=90) 
 ## Hi, 👋  I'm <a href="https://fusheng-ji.github.io/" target="_blank">Wenbo Ji | 嵇文博</a> 
-
-<!-- <img align="left" alt="GIF" src="https://media.giphy.com/media/LnQjpWaON8nhr21vNW/giphy.gif" width="80" title="Say HI">  -->
 <p align="center">
 <img  alt="JPG" src="https://user-images.githubusercontent.com/36562829/153739458-8211699c-4b67-4b41-898f-914bf40b48e8.jpg" width="600" title="Say HI">
 </p>
-
-<em>🙋‍♂️  I am a Second-year Computer Science Master's student at CAD Research Center, Tongji University. 
+<em> Next:
 <br><br>
-<em>👨‍🎓  I will join Technical University of Munich as a Electrical Engineering and Information Technology Master's student in winter semester 2023/24. 
+<em>👨‍🎓  I will join TUM as a Electrical Engineering and Information Technology Master's student in 2023/24 Winter. 
+<br><br>
+<em> Currently:
+<br><br>
+<em>👨🏻‍💻  I am doing a research internship at Zhejiang University under the supervision of <a href="https://yiyiliao.github.io/">Prof. yiyi Liao</a>.
+<br><br>
+<em>🙋‍♂️  I am a Second-year Computer Science Master's student at CAD Research Center, Tongji University. 
 <br><br>
 <em>😄  I am looking for an internship and collaboration.🙋‍♂️🙋‍♂️</em>
 <br><br>
 <em>💬 My email is wenboji0420 (at) gmail (dot) com, feel free to contact me :).</em>
 <br><br>
 <em>🖖  Language: English 🇬🇧 / 中文 🇨🇳 / Deutsch 🇩🇪 / 日本語 🇯🇵</em>
-
+<br><br>
 
 
 <p align="center">
   <a href="https://github.com/fusheng-ji" class="rich-diff-level-one">
-    <img src="https://github-readme-stats.vercel.app/api?username=fusheng-ji" alt="fusheng-ji's Stats" >
+    <img src="https://github-readme-stats.vercel.app/api?username=fusheng-ji&line_height=28" alt="fusheng-ji's Stats" >
+  </a>
+  <a href="https://github.com/fusheng-ji" class="rich-diff-level-one">
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=fusheng-ji&layout=donut" alt="fusheng-ji's language" >
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/fusheng-ji" class="rich-diff-level-one">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=fusheng-ji&layout=compact" alt="fusheng-ji's language" >
-  </a>
+  
 </p>
 
 <p align="center">
