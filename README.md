@@ -23,15 +23,11 @@
 
 <p align="center">
   <a href="https://github.com/fusheng-ji" class="rich-diff-level-one">
-    <img src="https://github-readme-stats.vercel.app/api?username=fusheng-ji&line_height=28" alt="fusheng-ji's Stats" >
+    <img src="https://github-readme-stats.vercel.app/api?username=fusheng-ji&line_height=28&theme=dark#gh-dark-mode-only" alt="fusheng-ji's Stats" >
   </a>
   <a href="https://github.com/fusheng-ji" class="rich-diff-level-one">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=fusheng-ji&layout=donut" alt="fusheng-ji's language" >
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=fusheng-ji&layout=donut&theme=dark#gh-dark-mode-only" alt="fusheng-ji's language" >
   </a>
-</p>
-<p align="center">
-  
-</p>
 
 <p align="center">
   <img height="30" src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++" title="C++">
