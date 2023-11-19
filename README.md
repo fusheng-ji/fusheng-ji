@@ -11,7 +11,7 @@
 <br><br>
 <em>👨🏻‍💻  I am doing a research internship at Zhejiang University under the supervision of <a href="https://yiyiliao.github.io/">Prof. yiyi Liao</a>.
 <br><br>
-<em>🙋‍♂️  I am a Second-year Computer Science Master's student at CAD Research Center, Tongji University. 
+<em>🙋‍♂️  I am a Third-year Computer Science Master's student at CAD Research Center, Tongji University. 
 <br><br>
 <em>😄  I am looking for an internship and collaboration.🙋‍♂️🙋‍♂️</em>
 <br><br>
