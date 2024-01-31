@@ -6,13 +6,13 @@
 <br><br>
 <em>👨‍🎓  I am a first-year master's student in electrical engineering and information technology at the <a href="https://www.cit.tum.de/en/cit/home/">Technical University of Munich </a>.
 <br><br>
-<em>👨🏻‍💻  I am now a master's student of <a href="https://www.mdsi.tum.de/en/di-lab/tum-di-lab/">TUM-DI-LAB</a> under the supervision of <a href="https://cvg.cit.tum.de/members/xiya">Dr. Yan Xia</a> (TUM CVG) and <a href="https://chuanxiaz.com/">Dr. Chuanxia Zheng</a> (Oxford VGG).
+<em>👨🏻‍💻  I am now a master's student of <a href="https://cvg.cit.tum.de/">TUM-CVG</a>, <a href="https://www.mdsi.tum.de/en/di-lab/tum-di-lab/">TUM-DI-LAB</a> under the supervision of <a href="https://cvg.cit.tum.de/members/cremers">Prof. Dr. Daniel Cremers</a>, <a href="https://cvg.cit.tum.de/members/xiya">Dr. Yan Xia</a> (TUM CVG) and <a href="https://chuanxiaz.com/">Dr. Chuanxia Zheng</a> (Oxford VGG).
 <br><br>
 <em>🙋‍♂️  I am a Third-year Computer Science Master's student at CAD Research Center, Tongji University. 
 <br><br>
 <em>😄  I am looking for an internship and collaboration.🙋‍♂️🙋‍♂️</em>
 <br><br>
-<em>👨🏻‍💻  I did a research internship at Zhejiang University under the supervision of <a href="https://yiyiliao.github.io/">Prof. yiyi Liao</a>.
+<em>👨🏻‍💻  I did a research internship at Zhejiang University under the supervision of <a href="https://yiyiliao.github.io/">Prof. Yiyi Liao</a>.
 <br><br>
 <em>💬 My email is wenboji0420 (at) gmail (dot) com, feel free to contact me :).</em>
 <br><br>
