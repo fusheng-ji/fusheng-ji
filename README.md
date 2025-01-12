@@ -4,7 +4,7 @@
 <img  alt="JPG" src="https://user-images.githubusercontent.com/36562829/153739458-8211699c-4b67-4b41-898f-914bf40b48e8.jpg" width="600" title="Say HI">
 </p>
 <br><br>
-<em>👨‍🎓  I am a second-year master's student in electrical engineering and information technology at the <a href="https://www.cit.tum.de/en/cit/home/">Technical University of Munich </a>.
+<em>👨‍🎓  I am a master's student in electrical engineering and information technology at the <a href="https://www.cit.tum.de/en/cit/home/">Technical University of Munich </a>.
 <br><br>
 <em>👨🏻‍💻  I am now a master's student of <a href="https://cvg.cit.tum.de/">TUM-CVG</a>, <a href="https://www.mdsi.tum.de/en/di-lab/tum-di-lab/">TUM-DI-LAB</a> under the supervision of <a href="https://cvg.cit.tum.de/members/cremers">Prof. Dr. Daniel Cremers</a>, <a href="https://cvg.cit.tum.de/members/xiya">Dr. Yan Xia</a> (TUM CVG) and <a href="https://chuanxiaz.com/">Dr. Chuanxia Zheng</a> (Oxford VGG).
 <br><br>
