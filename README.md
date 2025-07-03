@@ -6,9 +6,9 @@
 <br><br>
 <em>👨‍🎓  I am a master's student in electrical engineering and information technology at the <a href="https://www.cit.tum.de/en/cit/home/">Technical University of Munich </a>.
 <br><br>
-<em>👨🏻‍💻  I am now a master's student of <a href="https://cvg.cit.tum.de/">TUM-CVG</a>, <a href="https://www.mdsi.tum.de/en/di-lab/tum-di-lab/">TUM-DI-LAB</a> under the supervision of <a href="https://cvg.cit.tum.de/members/cremers">Prof. Dr. Daniel Cremers</a>, <a href="https://cvg.cit.tum.de/members/xiya">Dr. Yan Xia</a> (TUM CVG) and <a href="https://chuanxiaz.com/">Dr. Chuanxia Zheng</a> (Oxford VGG).
+<em>👨🏻‍💻  I was a master's student of <a href="https://cvg.cit.tum.de/">TUM-CVG</a>, <a href="https://www.mdsi.tum.de/en/di-lab/tum-di-lab/">TUM-DI-LAB</a> under the supervision of <a href="https://cvg.cit.tum.de/members/cremers">Prof. Dr. Daniel Cremers</a>, <a href="https://cvg.cit.tum.de/members/xiya">Dr. Yan Xia</a> and <a href="https://chuanxiaz.com/">Dr. Chuanxia Zheng</a>.
 <br><br>
-<em>🙋‍♂️  I am a Third-year Computer Science Master's student at CAD Research Center, Tongji University. 
+<em>🙋‍♂️  I obtained my Master’s degree in Computer Science from the CAD Research Center, Tongji University.
 <br><br>
 <em>😄  I am looking for collaboration.🙋‍♂️🙋‍♂️</em>
 <br><br>
