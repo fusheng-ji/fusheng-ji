@@ -1,22 +1,73 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&&color=gradient&height=80&section=header&fontSize=90) 
+
 ## Hi, 👋  I'm <a href="https://fusheng-ji.github.io/" target="_blank">Wenbo Ji | 嵇文博</a> 
+
 <p align="center">
-<img  alt="JPG" src="https://user-images.githubusercontent.com/36562829/153739458-8211699c-4b67-4b41-898f-914bf40b48e8.jpg" width="600" title="Say HI">
+<img alt="JPG" src="https://user-images.githubusercontent.com/36562829/153739458-8211699c-4b67-4b41-898f-914bf40b48e8.jpg" width="600" title="Say HI">
 </p>
+
+<p align="center">
+  <a href="https://fusheng-ji.github.io/" target="_blank">
+    <img src="https://img.shields.io/badge/Homepage-222222?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Homepage">
+  </a>
+  <a href="https://fusheng-ji.github.io/blog/" target="_blank">
+    <img src="https://img.shields.io/badge/Blog-FF5722?style=for-the-badge&logo=blogger&logoColor=white" alt="Blog">
+  </a>
+  <a href="https://x.com/wenbo_ji_0420" target="_blank">
+    <img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="X">
+  </a>
+  <a href="https://www.linkedin.com/in/wenbo-ji-6950b9187/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+  </a>
+  <a href="mailto:wenboji0420@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
+  </a>
+</p>
+
 <br><br>
-<em>👨‍🎓  I am a master's student in electrical engineering and information technology at the <a href="https://www.cit.tum.de/en/cit/home/">Technical University of Munich </a>.
+
+<em>🎯 <strong>I am seeking Ph.D. opportunities for Fall 2027 entry.</strong></em>
+
 <br><br>
-<em>👨🏻‍💻  I was a master's student of <a href="https://cvg.cit.tum.de/">TUM-CVG</a>, <a href="https://www.mdsi.tum.de/en/di-lab/tum-di-lab/">TUM-DI-LAB</a> under the supervision of <a href="https://cvg.cit.tum.de/members/cremers">Prof. Dr. Daniel Cremers</a>, <a href="https://cvg.cit.tum.de/members/xiya">Dr. Yan Xia</a> and <a href="https://chuanxiaz.com/">Dr. Chuanxia Zheng</a>.
+
+<em>👨‍🎓 I am currently pursuing a second M.Sc. in Electrical Engineering and Information Technology at the <a href="https://www.cit.tum.de/en/cit/home/">Technical University of Munich</a>.</em>
+
 <br><br>
-<em>🙋‍♂️  I obtained my Master’s degree in Computer Science from the CAD Research Center, Tongji University.
+
+<em>👨🏻‍💻 I am working on my master's thesis on human motion video diffusion at the <a href="https://niessnerlab.org/">TUM Visual Computing Group</a>, advised by Yu Chi, Jiapeng Tang, and <a href="https://niessnerlab.org/members/matthias_niessner/profile.html">Prof. Matthias Nießner</a>.</em>
+
 <br><br>
-<em>😄  I am looking for collaboration.🙋‍♂️🙋‍♂️</em>
+
+<em>🤖 I am also an intern at Agile Robots SE, working on video-action world models for robot dexterous manipulation.</em>
+
 <br><br>
-<em>👨🏻‍💻  I did a research internship at Zhejiang University under the supervision of <a href="https://yiyiliao.github.io/">Prof. Yiyi Liao</a>.
+
+<em>🔬 My research interests include video generation, 3D/4D reconstruction, long-term tracking, scene decomposition, human-scene interaction, and perception-action world models.</em>
+
 <br><br>
+
+<em>👨🏻‍💻 Previously, I worked on 3D scene decomposition at <a href="https://cvg.cit.tum.de/">TUM-CVG</a>, <a href="https://www.mdsi.tum.de/en/di-lab/tum-di-lab/">TUM-DI-LAB</a>, and Oxford VGG under the supervision of <a href="https://cvg.cit.tum.de/members/cremers">Prof. Dr. Daniel Cremers</a>, <a href="https://cvg.cit.tum.de/members/xiya">Dr. Yan Xia</a>, <a href="https://chuanxiaz.com/">Prof. Chuanxia Zheng</a>, and Weirong Chen.</em>
+
+<br><br>
+
+<em>👨🏻‍💻 I also worked as a research intern at ImFusion and TUM CAMP on dense video point tracking, and completed a research internship at Zhejiang University under the supervision of <a href="https://yiyiliao.github.io/">Prof. Yiyi Liao</a>.</em>
+
+<br><br>
+
+<em>🙋‍♂️ I obtained my Master’s degree in Computer Science from the CAD Research Center, Tongji University.</em>
+
+<br><br>
+
+<em>😄 I am always happy to discuss research ideas, collaboration, and Ph.D. opportunities. 🙋‍♂️</em>
+
+<br><br>
+
 <em>💬 My email is wenboji0420 (at) gmail (dot) com, feel free to contact me :).</em>
+
 <br><br>
-<em>🖖  Language: English 🇬🇧 / 中文 🇨🇳 / Deutsch 🇩🇪 </em>
+
+<em>🖖 Language: English 🇬🇧 / 中文 🇨🇳 / Deutsch 🇩🇪 </em>
+
 <br><br>
 
 <p align="center">
@@ -41,7 +92,7 @@
 <img height="30" src="https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV" title="OpenCV">
 <img height="30" src="https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white" alt="Cmake" title="Cmake">
 <img height="30" src="https://img.shields.io/badge/latex-%23008080.svg?style=for-the-badge&logo=latex&logoColor=white" alt="latex" title="latex">
-<img height="30" src="https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white" alt="Markdown" title="MarkDown">
+<img height="30" src="https://img.shields.io/badge/markdown-%23000000?style=for-the-badge&logo=markdown&logoColor=white" alt="Markdown" title="MarkDown">
 <img height="30" src="https://img.shields.io/badge/blender-%23F5792A.svg?style=for-the-badge&logo=blender&logoColor=white" alt="Blender" title="Blender">
 </p>
 
