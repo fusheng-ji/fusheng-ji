@@ -27,6 +27,10 @@
 
 <br>
 
+<em>🔬 <strong>Research Interests:</strong> Video Generation · 3D/4D Vision · Long-term Tracking · Perception-Action World Models</em>
+
+<br>
+
 <em>👨‍🎓 I am currently pursuing a second M.Sc. in Electrical Engineering and Information Technology at the <a href="https://www.cit.tum.de/en/cit/home/">Technical University of Munich</a>.</em>
 
 <br>
@@ -36,10 +40,6 @@
 <br>
 
 <em>🤖 I am also an intern at Agile Robots SE, working on video-action world models for robot dexterous manipulation.</em>
-
-<br>
-
-<em>🔬 My research interests include video generation, 3D/4D reconstruction, long-term tracking, scene decomposition, human-scene interaction, and perception-action world models.</em>
 
 <br>
 
