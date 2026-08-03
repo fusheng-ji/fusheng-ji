@@ -1,72 +1,62 @@
-![header](https://capsule-render.vercel.app/api?type=waving&&color=gradient&height=80&section=header&fontSize=90) 
+![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=80&section=header)
 
-## Hi, 👋  I'm Wenbo Ji | 嵇文博
-
-
+## Hi, 👋 I'm Wenbo Ji | 嵇文博
 
 <p align="center">
-  <a href="https://fusheng-ji.github.io/" target="_blank" style="text-decoration: none;"><img src="https://img.shields.io/badge/Homepage-222222?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Homepage"></a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://fusheng-ji.github.io/blog/" target="_blank" style="text-decoration: none;"><img src="https://img.shields.io/badge/Blog-FF5722?style=for-the-badge&logo=blogger&logoColor=white" alt="Blog"></a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://scholar.google.com/citations?hl=en&user=ZTUMczEAAAAJ" target="_blank" style="text-decoration: none;"><img src="https://img.shields.io/badge/Google%20Scholar-4285F4?style=for-the-badge&logo=googlescholar&logoColor=white" alt="Google Scholar"></a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://x.com/wenbo_ji_0420" target="_blank" style="text-decoration: none;"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="X"></a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://www.linkedin.com/in/wenbo-ji-6950b9187/" target="_blank" style="text-decoration: none;"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="mailto:wenboji0420@gmail.com" style="text-decoration: none;"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
+  <a href="https://fusheng-ji.github.io/"><img src="https://img.shields.io/badge/Homepage-222222?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Homepage"></a>
+  &nbsp;&nbsp;
+  <a href="https://fusheng-ji.github.io/blog/"><img src="https://img.shields.io/badge/Blog-FF5722?style=for-the-badge&logo=blogger&logoColor=white" alt="Blog"></a>
+  &nbsp;&nbsp;
+  <a href="https://fusheng-ji.github.io/assets/doc/WenboJi_CV_English.pdf"><img src="https://img.shields.io/badge/CV-B91C1C?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="CV"></a>
+  &nbsp;&nbsp;
+  <a href="https://scholar.google.com/citations?user=ZTUMczEAAAAJ&amp;hl=en"><img src="https://img.shields.io/badge/Google%20Scholar-4285F4?style=for-the-badge&logo=googlescholar&logoColor=white" alt="Google Scholar"></a>
+  &nbsp;&nbsp;
+  <a href="https://x.com/wenbo_ji_"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="X"></a>
+  &nbsp;&nbsp;
+  <a href="https://www.linkedin.com/in/wenbo-ji-6950b9187/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
+  &nbsp;&nbsp;
+  <a href="mailto:wenboji0420@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
 </p>
 
 <p align="center">
-<img alt="JPG" src="https://user-images.githubusercontent.com/36562829/153739458-8211699c-4b67-4b41-898f-914bf40b48e8.jpg" width="600" title="Say HI">
+  <img src="https://user-images.githubusercontent.com/36562829/153739458-8211699c-4b67-4b41-898f-914bf40b48e8.jpg" width="600" alt="Wenbo Ji" title="Say hi">
 </p>
-<br>
 
-<em>🎯 <strong>I am seeking Ph.D. opportunities for Fall 2027 entry.</strong></em>
+### About Me
 
-<br>
+🎯 **I am seeking Ph.D. opportunities for Fall 2027** in 3D/4D scene representation, video generation, and robot world models.
 
-<em>🔬 <strong>Research Interests:</strong> Video Generation · 3D/4D Vision · Long-term Tracking · Perception-Action World Models</em>
+🔬 **Research Interests:** 3D/4D Scene Representation · Human-Centric Video Generation · Dynamic Visual Perception · Embodied World Models
 
-<br>
+I build generative and geometric models for interactive humans, dynamic 3D scenes, and robot learning.
 
-<em>👨‍🎓 I am currently pursuing a second M.Sc. in Electrical Engineering and Information Technology at the <a href="https://www.cit.tum.de/en/cit/home/">Technical University of Munich</a>.</em>
+👨‍🎓 I am pursuing an M.Sc. in Electrical Engineering and Information Technology at the [Technical University of Munich](https://www.cit.tum.de/en/cit/home/), after earning an M.Sc. in Computer Science from [Tongji University](https://see.tongji.edu.cn/index.htm) in 2025.
 
-<br>
+👨🏻‍💻 For my master's thesis at [TUM Visual Computing](https://niessnerlab.org/), I am developing a camera-controlled video diffusion model for controllable synthesis of human motion and scene interactions across changing viewpoints. I am advised by [Yu Chi](https://ychgoaround.github.io/), [Jiapeng Tang](https://tangjiapeng.github.io/), and [Prof. Matthias Nießner](https://niessnerlab.org/members/matthias_niessner/profile.html).
 
-<em>👨🏻‍💻 I am working on my master's thesis on human motion video diffusion at the <a href="https://niessnerlab.org/">TUM Visual Computing Group</a>, advised by Yu Chi, Jiapeng Tang, and <a href="https://niessnerlab.org/members/matthias_niessner/profile.html">Prof. Matthias Nießner</a>.</em>
+🤖 At [Agile Robots SE](https://www.agile-robots.com/en/), I work on cross-embodiment video generation that translates egocentric human demonstrations into robot-domain videos for downstream policy learning.
 
-<br>
+### Selected Research
 
-<em>🤖 I am also an intern at Agile Robots SE, working on video-action world models for robot dexterous manipulation.</em>
+| Work | Venue | Focus |
+| --- | --- | --- |
+| **[ViDS](https://fusheng-ji.github.io/ViDS/)** · [Paper](https://arxiv.org/abs/2607.24124) | Preprint, 2026 | 3D face tracking-conditioned video diffusion for expressive, identity-preserving portrait animation; ranked first on 8 of 13 reported VFHQ metrics. |
+| **[CSG-Fusion](https://openaccess.thecvf.com/content/ICCV2025W/E2E3D/html/Xia_CSG-Fusion_Consistent_Sparse-View_Gaussian_Splatting_via_Matching-based_Fusion_ICCVW_2025_paper.html)** | ICCV 2025 Workshop E2E3D · 🏆 [Best Paper](https://fusheng-ji.github.io/papers/CSG_Fusion_ICCV2025Workshop_E2E3D/CSG_fusion_certificate.pdf) | Matching-based fusion of sparse-view pointmaps into compact, cross-view-consistent 3D Gaussians. |
+| **[LiteTracker](https://arxiv.org/abs/2504.09904)** · [Code](https://github.com/ImFusionGmbH/lite-tracker) | MICCAI 2025 | Accurate online tissue tracking with causal temporal feature reuse; approximately 7× faster than its predecessor and 2× faster than prior state of the art. |
+| **[RE0](https://recognizeeverything.github.io/)** · [Paper](https://ieeexplore.ieee.org/document/11127468/) · [Code](https://github.com/RecognizeEverything/Re0) | ICRA 2025 | Training-free 3D zero-shot instance segmentation from multi-view masks and CLIP semantics. |
 
-<br>
+### Background
 
-<em>👨🏻‍💻 Previously, I worked on 3D scene decomposition at <a href="https://cvg.cit.tum.de/">TUM-CVG</a>, <a href="https://www.mdsi.tum.de/en/di-lab/tum-di-lab/">TUM-DI-LAB</a>, and Oxford VGG under the supervision of <a href="https://cvg.cit.tum.de/members/cremers">Prof. Dr. Daniel Cremers</a>, <a href="https://cvg.cit.tum.de/members/xiya">Dr. Yan Xia</a>, <a href="https://chuanxiaz.com/">Prof. Chuanxia Zheng</a>, and Weirong Chen.</em>
+Previously, I worked on 3D scene decomposition and sparse-view reconstruction with [TUM-CVG](https://cvg.cit.tum.de/), [TUM-DI-LAB](https://www.mdsi.tum.de/en/di-lab/tum-di-lab/), and [Oxford VGG](https://www.robots.ox.ac.uk/~vgg/); dense video point tracking with [ImFusion](https://www.imfusion.com/) and [TUM CAMP](https://www.cs.cit.tum.de/camp/); and large-scale 3D reconstruction at [Zhejiang University](https://www.zju.edu.cn/english/).
 
-<br>
+Across these projects, I collaborated with [Prof. Daniel Cremers](https://cvg.cit.tum.de/members/cremers), [Prof. Yan Xia](https://cvg.cit.tum.de/members/xiya), [Prof. Chuanxia Zheng](https://chuanxiaz.com/), [Prof. Nassir Navab](https://www.professoren.tum.de/en/navab-nassir), [Prof. Benjamin Busam](https://www.cs.cit.tum.de/camp/members/benjamin-busam/), and [Prof. Yiyi Liao](https://yiyiliao.github.io/).
 
-<em>👨🏻‍💻 I also worked as a research intern at ImFusion and TUM CAMP on dense video point tracking, and completed a research internship at Zhejiang University under the supervision of <a href="https://yiyiliao.github.io/">Prof. Yiyi Liao</a>.</em>
-
-<br>
-
-<em>🙋‍♂️ I obtained my Master’s degree in Computer Science from the CAD Research Center, Tongji University.</em>
-
-<br>
-
-<em>😄 I am always happy to discuss research ideas, collaboration, and Ph.D. opportunities. 🙋‍♂️</em>
+💬 I am always happy to discuss research ideas, collaboration, and Ph.D. opportunities. Feel free to [email me](mailto:wenboji0420@gmail.com).
 
 <br>
 
 <p align="center">
-  <img height="30" src="https://img.shields.io/badge/Codex-412991?style=for-the-badge&logo=openai&logoColor=white" alt="Codex" title="Codex">
-  <img height="30" src="https://img.shields.io/badge/Cursor-000000?style=for-the-badge&logo=cursor&logoColor=white" alt="Cursor" title="Cursor">
-  <img height="30" src="https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white" alt="Three.js" title="Three.js">
-  <img height="30" src="https://img.shields.io/badge/Blender-F5792A?style=for-the-badge&logo=blender&logoColor=white" alt="Blender" title="Blender">
-  <img height="30" src="https://img.shields.io/badge/Unity-000000?style=for-the-badge&logo=unity&logoColor=white" alt="Unity" title="Unity">
-  <img height="30" src="https://img.shields.io/badge/MuJoCo-0052CC?style=for-the-badge&logo=google&logoColor=white" alt="MuJoCo" title="MuJoCo">
-  <img height="30" src="https://img.shields.io/badge/NVIDIA%20Isaac%20Sim-76B900?style=for-the-badge&logo=nvidia&logoColor=white" alt="NVIDIA Isaac Sim" title="NVIDIA Isaac Sim">
+  <em>From geometry and video to perception–action models of interactive humans and dynamic scenes.</em>
 </p>
 
-![footer](https://capsule-render.vercel.app/api?type=waving&&color=gradient&height=80&section=footer&fontSize=90)
+![footer](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=80&section=footer)
