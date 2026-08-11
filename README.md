@@ -43,7 +43,6 @@ I build generative and geometric models for interactive humans, dynamic 3D scene
 | **[ViDS](https://fusheng-ji.github.io/ViDS/)** · [Paper](https://arxiv.org/abs/2607.24124) | Preprint, 2026 | 3D face tracking-conditioned video diffusion for expressive, identity-preserving portrait animation; ranked first on 8 of 13 reported VFHQ metrics. |
 | **[CSG-Fusion](https://openaccess.thecvf.com/content/ICCV2025W/E2E3D/html/Xia_CSG-Fusion_Consistent_Sparse-View_Gaussian_Splatting_via_Matching-based_Fusion_ICCVW_2025_paper.html)** | ICCV 2025 Workshop E2E3D · 🏆 [Best Paper](https://fusheng-ji.github.io/papers/CSG_Fusion_ICCV2025Workshop_E2E3D/CSG_fusion_certificate.pdf) | Matching-based fusion of sparse-view pointmaps into compact, cross-view-consistent 3D Gaussians. |
 | **[LiteTracker](https://arxiv.org/abs/2504.09904)** · [Code](https://github.com/ImFusionGmbH/lite-tracker) | MICCAI 2025 | Accurate online tissue tracking with causal temporal feature reuse; approximately 7× faster than its predecessor and 2× faster than prior state of the art. |
-| **[RE0](https://recognizeeverything.github.io/)** · [Paper](https://ieeexplore.ieee.org/document/11127468/) · [Code](https://github.com/RecognizeEverything/Re0) | ICRA 2025 | Training-free 3D zero-shot instance segmentation from multi-view masks and CLIP semantics. |
 
 ### Background
 
