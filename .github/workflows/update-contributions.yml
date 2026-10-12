@@ -1,0 +1,48 @@
+name: Update open-source contributions
+
+'on':
+  schedule:
+    - cron: '17 7 * * 1' # Monday, 07:17 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: update-open-source-contributions
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Check out profile repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          persist-credentials: true
+
+      - name: Update contributions
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/update_contributions.py
+
+      - name: Commit changed outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          outputs=(
+            README.md
+            assets/contributions-data.json
+          )
+          git add -- "${outputs[@]}"
+          if git diff --cached --quiet -- "${outputs[@]}"; then
+            echo 'Contributions unchanged; no commit needed.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: update open-source contributions' -- "${outputs[@]}"
+          git push origin HEAD:main

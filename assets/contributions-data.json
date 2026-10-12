@@ -1,0 +1,947 @@
+{
+  "schema_version": 2,
+  "verified_on": "2026-10-12",
+  "data": {
+    "username": "fusheng-ji",
+    "introduction": "Selected engineering contributions span generative model execution, GPU kernels, and differentiable rendering. Each repository is an independent project.",
+    "projects": [
+      {
+        "repository": "xdit-project/xDiT",
+        "name": "xDiT",
+        "title": "Reliable distributed generation",
+        "area": "Generative Model Systems",
+        "summary": "Merged request isolation and cache fixes strengthen distributed generation; further execution fixes remain proposed.",
+        "expanded": false,
+        "chains": [
+          {
+            "title": "Request state and collectives",
+            "kind": "dependency",
+            "analysis": "Request-local state is reset while communication groups are reused. The dedicated-VAE path then creates those groups consistently across DiT ranks, preventing leaks and mismatched collective order.",
+            "steps": [
+              {
+                "label": "Request lifecycle",
+                "prs": [
+                  {
+                    "repo": "xdit-project/xDiT",
+                    "number": 836,
+                    "url": "https://github.com/xdit-project/xDiT/pull/836",
+                    "title": "fix(runtime): keep per-request state from leaking into later requests",
+                    "status": "merged",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "VAE-rank collectives",
+                "prs": [
+                  {
+                    "repo": "xdit-project/xDiT",
+                    "number": 842,
+                    "url": "https://github.com/xdit-project/xDiT/pull/842",
+                    "title": "fix(pipelines): create the VAE-rank latent group once on every rank",
+                    "status": "merged",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Cache validity",
+            "kind": "dependency",
+            "analysis": "Shape guards prevent incompatible cache reuse; scheduler request hooks additionally reset step counts and residuals for same-shape requests. Regression and pipeline tests exercise consecutive generation calls.",
+            "steps": [
+              {
+                "label": "Shape compatibility",
+                "prs": [
+                  {
+                    "repo": "xdit-project/xDiT",
+                    "number": 813,
+                    "url": "https://github.com/xdit-project/xDiT/pull/813",
+                    "title": "fix(cache): restart step caches when the token count changes",
+                    "status": "merged",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Request boundaries",
+                "prs": [
+                  {
+                    "repo": "xdit-project/xDiT",
+                    "number": 864,
+                    "url": "https://github.com/xdit-project/xDiT/pull/864",
+                    "title": "fix(cache): restart the TeaCache step period on every request",
+                    "status": "merged",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Sequence and prompt masking",
+            "kind": "dependency",
+            "analysis": "Valid-token bounds first exclude sequence-parallel padding from attention keys; prompt-specific masks then preserve shorter samples in mixed-length Z-Image and Qwen-Image batches. Current validation uses tiny-model parity; historical pretrained comparisons provide additional output evidence, with ring-attention limitations explicit.",
+            "steps": [
+              {
+                "label": "Valid-key boundaries",
+                "prs": [
+                  {
+                    "repo": "xdit-project/xDiT",
+                    "number": 837,
+                    "url": "https://github.com/xdit-project/xDiT/pull/837",
+                    "title": "fix(sp): keep sequence-parallel padding out of attention keys",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Mixed-length prompt masks",
+                "prs": [
+                  {
+                    "repo": "xdit-project/xDiT",
+                    "number": 856,
+                    "url": "https://github.com/xdit-project/xDiT/pull/856",
+                    "title": "fix(sp): honour text masks for batched prompts of different lengths in Z-Image and Qwen-Image",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Cache layout and execution ownership",
+            "kind": "independent",
+            "analysis": "Draft changes align PipeFusion warmup and patch-mode KV layouts, exclude Ideogram padding, and pad/unpad uneven HunyuanVideo shards. A separate runner fix assigns prompt splitting, output gathering, and parallel VAE ownership to one layer each, preventing double processing and missing outputs. These are independent execution contracts, with draft paths still under review.",
+            "steps": [
+              {
+                "label": "Patch-major KV cache",
+                "prs": [
+                  {
+                    "repo": "xdit-project/xDiT",
+                    "number": 899,
+                    "url": "https://github.com/xdit-project/xDiT/pull/899",
+                    "title": "fix(cache): store the Ulysses PipeFusion KV cache patch-major",
+                    "status": "draft",
+                    "draft": true
+                  }
+                ]
+              },
+              {
+                "label": "Ideogram attention bounds",
+                "prs": [
+                  {
+                    "repo": "xdit-project/xDiT",
+                    "number": 900,
+                    "url": "https://github.com/xdit-project/xDiT/pull/900",
+                    "title": "fix(ideogram4): keep sequence-parallel padding out of attention",
+                    "status": "draft",
+                    "draft": true
+                  }
+                ]
+              },
+              {
+                "label": "HunyuanVideo shard boundaries",
+                "prs": [
+                  {
+                    "repo": "xdit-project/xDiT",
+                    "number": 901,
+                    "url": "https://github.com/xdit-project/xDiT/pull/901",
+                    "title": "fix(hunyuan-video): pad sequence-parallel shards when tokens do not divide evenly",
+                    "status": "draft",
+                    "draft": true
+                  }
+                ]
+              },
+              {
+                "label": "Runner and wrapper ownership",
+                "prs": [
+                  {
+                    "repo": "xdit-project/xDiT",
+                    "number": 902,
+                    "url": "https://github.com/xdit-project/xDiT/pull/902",
+                    "title": "fix(runner): let one layer own DP, output rank and parallel VAE for legacy pipelines",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repository": "sgl-project/sglang",
+        "name": "SGLang",
+        "title": "Native diffusion serving and cache lifecycle",
+        "area": "Generative Model Systems",
+        "summary": "Merged cache resets isolate requests; proposed Ovis-Image serving extends model integration and attention consistency.",
+        "expanded": false,
+        "chains": [
+          {
+            "title": "Native Ovis-Image integration",
+            "kind": "independent",
+            "analysis": "A native pipeline connects checkpoint mapping, text conditioning, CFG, TP/SP, offload, and image serving. The PR reports bitwise agreement with pinned Diffusers for tested single-GPU exact-tier runs on B200; parallel runs are checked against explicit BF16 noise controls. Unsupported features fail with explicit errors.",
+            "steps": [
+              {
+                "label": "Ovis-Image model and serving",
+                "prs": [
+                  {
+                    "repo": "sgl-project/sglang",
+                    "number": 43152,
+                    "url": "https://github.com/sgl-project/sglang/pull/43152",
+                    "title": "[diffusion] model: add native Ovis-Image support",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Request entry to expert state",
+            "kind": "independent",
+            "analysis": "Resetting all DiT caches when a request starts covers experts that never execute denoising step zero, preventing stale TeaCache/Spectrum state across requests.",
+            "steps": [
+              {
+                "label": "Per-request DiT reset",
+                "prs": [
+                  {
+                    "repo": "sgl-project/sglang",
+                    "number": 42437,
+                    "url": "https://github.com/sgl-project/sglang/pull/42437",
+                    "title": "[diffusion] Reset DiT cache state at the start of each request",
+                    "status": "merged",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Sharded SDPA consistency",
+            "kind": "independent",
+            "analysis": "Eligible exact-tier torch-SDPA calls pad query rows so TP/Ulysses head shards select the unsharded attention kernel. B200 operator and two-GPU Ulysses tests report bitwise agreement; whole-model differences remain. The proposal retains the existing lossless-tier and unaffected backend behavior.",
+            "steps": [
+              {
+                "label": "Exact-tier head shards",
+                "prs": [
+                  {
+                    "repo": "sgl-project/sglang",
+                    "number": 43242,
+                    "url": "https://github.com/sgl-project/sglang/pull/43242",
+                    "title": "[diffusion] keep TP/Ulysses head shards on the unsharded torch SDPA kernel",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repository": "vllm-project/vllm-omni",
+        "name": "vLLM-Omni",
+        "title": "Error propagation in diffusion serving",
+        "area": "Generative Model Systems",
+        "summary": "Typed validation errors retain their original API status through the single-GPU diffusion executor.",
+        "expanded": false,
+        "chains": [
+          {
+            "title": "Typed worker errors",
+            "kind": "independent",
+            "analysis": "Single-GPU execution retains client-error type and status instead of flattening exceptions into generic server failures, so API responses reflect the original validation error.",
+            "steps": [
+              {
+                "label": "Executor error metadata",
+                "prs": [
+                  {
+                    "repo": "vllm-project/vllm-omni",
+                    "number": 8474,
+                    "url": "https://github.com/vllm-project/vllm-omni/pull/8474",
+                    "title": "[Bugfix] Keep client error status in the single-GPU diffusion executor",
+                    "status": "merged",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repository": "modelscope/DiffSynth-Studio",
+        "name": "DiffSynth-Studio",
+        "title": "Adapter semantics and memory-efficient execution",
+        "area": "Generative Model Systems",
+        "summary": "Proposed LoRA scaling and VAE tiling fixes preserve adapter semantics and memory-saving execution.",
+        "expanded": false,
+        "chains": [
+          {
+            "title": "Independent pipeline modules",
+            "kind": "independent",
+            "analysis": "LoRA loading applies alpha/rank metadata; QwenImage VAE encoding and decoding execute spatial tiling instead of ignoring the requested memory-saving path.",
+            "steps": [
+              {
+                "label": "LoRA scaling",
+                "prs": [
+                  {
+                    "repo": "modelscope/DiffSynth-Studio",
+                    "number": 1719,
+                    "url": "https://github.com/modelscope/DiffSynth-Studio/pull/1719",
+                    "title": "fix(lora): apply the alpha stored in safetensors metadata",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "VAE tiling",
+                "prs": [
+                  {
+                    "repo": "modelscope/DiffSynth-Studio",
+                    "number": 1720,
+                    "url": "https://github.com/modelscope/DiffSynth-Studio/pull/1720",
+                    "title": "fix(qwen-image): implement tiled encode and decode in QwenImageVAE",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repository": "huggingface/diffusers",
+        "name": "Diffusers",
+        "title": "Branch-aware video cache integration",
+        "area": "Generative Model Systems",
+        "summary": "Proposed Wan cache isolation keeps conditional and unconditional guidance branches separate.",
+        "expanded": false,
+        "chains": [
+          {
+            "title": "Conditional and unconditional contexts",
+            "kind": "independent",
+            "analysis": "Conditional and unconditional calls receive separate cache contexts, preserving classifier-free guidance branch isolation and enabling cached execution in the Wan pipeline.",
+            "steps": [
+              {
+                "label": "Wan V2V cache contexts",
+                "prs": [
+                  {
+                    "repo": "huggingface/diffusers",
+                    "number": 14948,
+                    "url": "https://github.com/huggingface/diffusers/pull/14948",
+                    "title": "Fix missing cache contexts in Wan video-to-video",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repository": "hao-ai-lab/FastVideo",
+        "name": "FastVideo",
+        "title": "Hardware-aware video inference and training",
+        "area": "GPU Training & Inference",
+        "summary": "Merged Triton layout fusion removes GPU passes; proposed GB10 inference and NVFP4 training extend hardware coverage.",
+        "expanded": false,
+        "chains": [
+          {
+            "title": "SM100 and GB10 inference",
+            "kind": "dependency",
+            "analysis": "A fused Triton kernel removes separate scatter and transpose passes. The PR reports 1.155× end-to-end speedup for Wan2.1-VSA-T2V-14B on one B200 with 50 steps, with bitwise-identical frames in the tested configurations. A proposed GB10/SM121 extension reuses the same fused layout for eligible BF16, tile-64, D128 inference. DGX Spark tests report exact paired outputs for the tested FastWan2.1 1.3B configurations, with memory-safety checks and full-model validation; the reported timing benefit varies by prompt.",
+            "steps": [
+              {
+                "label": "Fused VSA layout",
+                "prs": [
+                  {
+                    "repo": "hao-ai-lab/FastVideo",
+                    "number": 1900,
+                    "url": "https://github.com/hao-ai-lab/FastVideo/pull/1900",
+                    "title": "[perf] Fuse VSA64 tile layout for SM100 inference",
+                    "status": "merged",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "GB10 fused-layout support",
+                "prs": [
+                  {
+                    "repo": "hao-ai-lab/FastVideo",
+                    "number": 1948,
+                    "url": "https://github.com/hao-ai-lab/FastVideo/pull/1948",
+                    "title": "[perf] Enable VSA64 fused layout on DGX Spark GB10",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "GB10 / SM121 QAT",
+            "kind": "dependency",
+            "analysis": "Padding-aware NVFP4 scales and SM121 split-path routing underpin forward-consistent dV. The proposed backward reconstructs forward quantization statistics; its training-gradient contract remains under evaluation.",
+            "steps": [
+              {
+                "label": "Quantization and routing prerequisites",
+                "prs": [
+                  {
+                    "repo": "hao-ai-lab/FastVideo",
+                    "number": 1933,
+                    "url": "https://github.com/hao-ai-lab/FastVideo/pull/1933",
+                    "title": "[bugfix] NVFP4 fake-quant: mask padding lanes and guard zero-scale groups",
+                    "status": "open",
+                    "draft": false
+                  },
+                  {
+                    "repo": "hao-ai-lab/FastVideo",
+                    "number": 1934,
+                    "url": "https://github.com/hao-ai-lab/FastVideo/pull/1934",
+                    "title": "[bugfix] Keep the split P@V path for Attn-QAT training on GB10 (SM121)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Forward-consistent dV",
+                "prs": [
+                  {
+                    "repo": "hao-ai-lab/FastVideo",
+                    "number": 1938,
+                    "url": "https://github.com/hao-ai-lab/FastVideo/pull/1938",
+                    "title": "[kernel] GB10: forward-consistent dV for Attn-QAT training",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repository": "RL-Align/RL-Kernel",
+        "name": "RL-Kernel",
+        "title": "Model operators and numerical contracts",
+        "area": "GPU Training & Inference",
+        "summary": "Merged CUDA dispatch fixes and proposed kernels target numerical correctness, distributed reproducibility, and logprob efficiency.",
+        "expanded": false,
+        "chains": [
+          {
+            "title": "MiniMax-H3 conditioning",
+            "kind": "stages",
+            "analysis": "These representative stages belong to a larger PR stack: three-modality AdaLN projection, fused RMSNorm/modulation, and sequence-parallel reductions with fixed accumulation order. Reported BF16 tests on 2/4/8 B200 ranks match single-GPU outputs and gradients bitwise in a norm/residual region with seeded sublayer stand-ins. A one-block closeout adds per-node forward/backward drift reporting; 11 of 17 nodes still use interim operators or provider replay. The latest evidence migration preserves historical measurements.",
+            "steps": [
+              {
+                "label": "AdaLN projection",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 485,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/485",
+                    "title": "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/9)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Fused norm and modulation",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 487,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/487",
+                    "title": "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/9)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Sequence-parallel reductions",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 494,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/494",
+                    "title": "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/9)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "One-block drift validation",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 539,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/539",
+                    "title": "[WS1][CUDA][MiniMax-H3] ws1_one_h3_block: one real block forward/backward with first-drift report (RFC #420 stack 10/10)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Qwen3-Next normalization",
+            "kind": "dependency",
+            "analysis": "The stack restores CUDA dispatch, specifies zero-centred normalization, adds gated forward/backward kernels, then defines GDN decode-state goldens. The final stage supplies PyTorch recurrent and convolution state references. Reference and provider checks expose casting and state differences before model integration.",
+            "steps": [
+              {
+                "label": "CUDA dispatch",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 466,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/466",
+                    "title": "[WS1][CUDA][Qwen3-Next] Restore CUDA dispatch for rms_norm (RFC #428 stack 1/4)",
+                    "status": "merged",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Zero-centred RMSNorm",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 467,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/467",
+                    "title": "[WS1][CUDA][Qwen3-Next] C1: zero-centred RMSNorm references and CUDA kernel (RFC #428 stack 2/4)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Gated RMSNorm",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 468,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/468",
+                    "title": "[WS1][CUDA][Qwen3-Next] Gated RMSNorm CUDA kernel for the GDN block (RFC #428 stack 3/4)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Decode-state contracts",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 469,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/469",
+                    "title": "[WS1][CUDA][Qwen3-Next] C6: GDN decode-step goldens and recurrent/conv state contract (RFC #428 stack 4/4)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Qwen3-Next integration and reproducibility",
+            "kind": "dependency",
+            "analysis": "This dependent stack extends the normalization and state contracts through MoE routing, TP4 mixers, full-model rollout/recompute, batch invariance, and fixed-order distributed logprob. Historical single-node 4 × B200 evidence covers 97 batch-invariance cells and 13 NCCL settings: selected-token logprob and LSE match TP1 on the same logits, while entropy is invariant only at a fixed TP degree. The latest #549 layout update reproduces archived reports; its fresh GPU validation run is pending.",
+            "steps": [
+              {
+                "label": "MoE route/combine",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 503,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/503",
+                    "title": "[WS1][CUDA][Qwen3-Next] MoE route/combine contract with a batch-invariant grouped expert GEMM (RFC #428 stack 5/8)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "TP4 model mixers",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 507,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/507",
+                    "title": "[WS1][CUDA][Qwen3-Next] TP4 GDN, convolution and D=256 attention mixers on real weights (RFC #428 stack 6/8)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Rollout/recompute chain",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 543,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/543",
+                    "title": "[WS1][CUDA][Qwen3-Next] Full-model chain: vLLM rollout vs VIME recompute, raw-bit through two updates and a reload (RFC #428 stack 7/8)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Batch-invariance validation",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 544,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/544",
+                    "title": "[WS1][CUDA][Qwen3-Next] Batch-invariance matrix for the full model, 97/97 cells bitwise (RFC #428 stack 8/8)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Distributed logprob parity",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 549,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/549",
+                    "title": "[WS1][CUDA][Qwen3-Next] TP distributed logprob parity: fixed reduction order, selected-token logprob exact across NCCL settings (RFC #428 stack 9/10)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Memory-efficient logp backward",
+            "kind": "independent",
+            "analysis": "A fused CUDA backward writes the returned gradient directly, with no extra temporary workspace; older builds retain a bounded chunked fallback. For BF16 logits with 32,768 rows and vocabulary 151,936 on one B200, the PR reports forward/backward peak memory falling from 46.37 to 9.27 GiB and median latency from 57.1 to 27.2 ms versus the previous VJP. The peak still includes the returned gradient.",
+            "steps": [
+              {
+                "label": "Fused logp backward",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 495,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/495",
+                    "title": "perf(logp): fused zero-workspace backward for the generic CUDA fused logp (#174)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Recursive deterministic autograd",
+            "kind": "independent",
+            "analysis": "An independent deterministic LogP path composes reusable VJP/JVP primitives and torch.func rules while retaining the first-order fast path. Fresh single-B200 tests cover derivative orders 1–8 in four precisions, with additional FP64 reverse-mode checks through order 10; hardware skips remain separate from passes. External performance for the expanded contract is unmeasured, and the memory figures above apply only to the generic backward proposal.",
+            "steps": [
+              {
+                "label": "Recursive LogP autograd",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 547,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/547",
+                    "title": "feat(cuda): enable recursive deterministic LogP autograd on B200",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repository": "Dao-AILab/flash-attention",
+        "name": "FlashAttention",
+        "title": "SM100 attention kernels and validation",
+        "area": "GPU Training & Inference",
+        "summary": "Proposed SM100 attention fixes address backward correctness, cache isolation, and reproducible kernel validation.",
+        "expanded": false,
+        "chains": [
+          {
+            "title": "dV memory transfers",
+            "kind": "independent",
+            "analysis": "Deriving V tensor-memory transfers independently of Q/K fixes the SM100 dV epilogue when forward succeeds but backward silently uses the wrong transfer width.",
+            "steps": [
+              {
+                "label": "Asymmetric-head dV",
+                "prs": [
+                  {
+                    "repo": "Dao-AILab/flash-attention",
+                    "number": 2975,
+                    "url": "https://github.com/Dao-AILab/flash-attention/pull/2975",
+                    "title": "[CuTe, Bwd, SM100] Fix dV epilogue for asymmetric head dimensions",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Cache-safe forward",
+            "kind": "independent",
+            "analysis": "Sequence-bounded nonpaged V loads zero-fill unused cache rows before P@V, preventing 0 × NaN contamination in dense and packed forward. The PR reports B200 correctness and memory-check coverage; valid V NaNs and paged-KV behavior retain their existing contracts.",
+            "steps": [
+              {
+                "label": "Unused V-cache isolation",
+                "prs": [
+                  {
+                    "repo": "Dao-AILab/flash-attention",
+                    "number": 2983,
+                    "url": "https://github.com/Dao-AILab/flash-attention/pull/2983",
+                    "title": "[CuTe, Fwd, SM100] Prevent NaN contamination from unused V cache entries",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Scheduling and reproducible validation",
+            "kind": "independent",
+            "analysis": "Adapts an existing CLC L2-swizzle implementation while preserving STATIC 2CTA compatibility. A separate dense/varlen benchmark records CUDA Graph timings, source revisions, compiler identity, and kernel hashes. The report credits upstream work for the observed register-spill gains.",
+            "steps": [
+              {
+                "label": "CLC and STATIC scheduling",
+                "prs": [
+                  {
+                    "repo": "Dao-AILab/flash-attention",
+                    "number": 2976,
+                    "url": "https://github.com/Dao-AILab/flash-attention/pull/2976",
+                    "title": "[CuTe, SM100] Apply L2 swizzling to CLC scheduling and preserve STATIC 2CTA",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Dense/varlen validation tool",
+                "prs": [
+                  {
+                    "repo": "Dao-AILab/flash-attention",
+                    "number": 2982,
+                    "url": "https://github.com/Dao-AILab/flash-attention/pull/2982",
+                    "title": "[CuTe, Fwd, SM100] Add a dense/varlen validation benchmark",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repository": "nerfstudio-project/gsplat",
+        "name": "gsplat",
+        "title": "Robust differentiable rendering",
+        "area": "3D Geometry & Differentiable Rendering",
+        "summary": "Proposed rasterization and loss fixes preserve valid outputs and gradients across degenerate inputs.",
+        "expanded": false,
+        "chains": [
+          {
+            "title": "Rendering contracts",
+            "kind": "stages",
+            "analysis": "Empty scenes retain background outputs and gradient shapes; depth-mode backward handles strided gradients and median-depth channels; degenerate masked selections return a differentiable zero without leaking excluded NaN/Inf values. Targeted regressions cover packed/unpacked rendering, geometry gradients, and zero-loss backward.",
+            "steps": [
+              {
+                "label": "Empty-scene inputs",
+                "prs": [
+                  {
+                    "repo": "nerfstudio-project/gsplat",
+                    "number": 1079,
+                    "url": "https://github.com/nerfstudio-project/gsplat/pull/1079",
+                    "title": "[fix] Handle empty scenes in 3DGS and 2DGS rasterization",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Depth gradients",
+                "prs": [
+                  {
+                    "repo": "nerfstudio-project/gsplat",
+                    "number": 1068,
+                    "url": "https://github.com/nerfstudio-project/gsplat/pull/1068",
+                    "title": "[fix] 2DGS: backward in RGB+D / RGB+ED modes and render_median in RGB mode",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Masked losses",
+                "prs": [
+                  {
+                    "repo": "nerfstudio-project/gsplat",
+                    "number": 1082,
+                    "url": "https://github.com/nerfstudio-project/gsplat/pull/1082",
+                    "title": "[fix] Keep degenerate masked losses finite",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Clamped-alpha geometry gradients",
+            "kind": "independent",
+            "analysis": "The 3DGUT backward proposal gates only the alpha-dependent path at the clamp, preserving hit-distance and normal terms for geometry gradients. PyTorch-reference comparisons and a synthetic depth-only optimization check support the correction; remaining scale growth follows the reference and reflects the underconstrained loss.",
+            "steps": [
+              {
+                "label": "Clamped-alpha distance and normals",
+                "prs": [
+                  {
+                    "repo": "nerfstudio-project/gsplat",
+                    "number": 1083,
+                    "url": "https://github.com/nerfstudio-project/gsplat/pull/1083",
+                    "title": "[fix] 3DGUT: hit-distance and normal gradients at clamped alpha",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repository": "facebookresearch/pytorch3d",
+        "name": "PyTorch3D",
+        "title": "Camera visibility and bounded box overlap",
+        "area": "3D Geometry & Differentiable Rendering",
+        "summary": "Proposed visibility and bounded box-clipping fixes prevent invalid feature sampling and CUDA buffer overflow.",
+        "expanded": false,
+        "chains": [
+          {
+            "title": "Visibility contract",
+            "kind": "independent",
+            "analysis": "World-to-view depth rejects points behind a camera, preventing invalid projections from contributing sampled features and gradients.",
+            "steps": [
+              {
+                "label": "Camera visibility",
+                "prs": [
+                  {
+                    "repo": "facebookresearch/pytorch3d",
+                    "number": 2056,
+                    "url": "https://github.com/facebookresearch/pytorch3d/pull/2056",
+                    "title": "Exclude points behind cameras from view sampling",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Bounded box clipping",
+            "kind": "dependency",
+            "analysis": "A bounded CUDA workspace first prevents triangle-buffer overflow. Polygon clipping then bounds each clipped triangle to nine vertices, removes that workspace, and aligns CPU/CUDA treatment of coincident faces. On one B200, the PR reports 100 × 100 box pairs dropping from 1.315 to 0.675 ms versus valid upstream controls, using the median of 31 CUDA-event samples; the 22-test box-IoU module passes.",
+            "steps": [
+              {
+                "label": "CUDA capacity bounds",
+                "prs": [
+                  {
+                    "repo": "facebookresearch/pytorch3d",
+                    "number": 2059,
+                    "url": "https://github.com/facebookresearch/pytorch3d/pull/2059",
+                    "title": "Fix CUDA box IoU triangle buffer capacity",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Bounded polygon clipping",
+                "prs": [
+                  {
+                    "repo": "facebookresearch/pytorch3d",
+                    "number": 2060,
+                    "url": "https://github.com/facebookresearch/pytorch3d/pull/2060",
+                    "title": "Clip box triangles as polygons in box3d_overlap",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "repository": "NVIDIA/warp",
+        "name": "NVIDIA Warp",
+        "title": "Half-precision numerical stability",
+        "area": "3D Geometry & Differentiable Rendering",
+        "summary": "Draft FP16 SVD and proposed zero-adjoint fixes address distinct forward and backward NaN paths.",
+        "expanded": false,
+        "chains": [
+          {
+            "title": "SVD3 forward precision",
+            "kind": "independent",
+            "analysis": "Input scaling and FP32 decomposition produce half-precision factors while preserving public signatures and existing adjoints. Reported CPU/B200 tests cover zero, rank-deficient, repeated-singular-value, and scaled inputs. The forward-only contribution remains draft pending maintainer guidance.",
+            "steps": [
+              {
+                "label": "FP16 SVD3 forward",
+                "prs": [
+                  {
+                    "repo": "NVIDIA/warp",
+                    "number": 2063,
+                    "url": "https://github.com/NVIDIA/warp/pull/2063",
+                    "title": "Fix half-precision SVD3 NaNs (GH-2055)",
+                    "status": "draft",
+                    "draft": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Zero-adjoint SVD gradients",
+            "kind": "independent",
+            "analysis": "A separate proposal bypasses reciprocal singular-value gaps when both U/V adjoints are zero, preserving singular-value gradients and preventing unused SVD diagnostics from contaminating other gradients. CPU and B200 regressions cover repeated singular values and small nonzero seeds. Maintainer guidance remains pending; the general nonzero U/V adjoint formula is unchanged, and downstream impact is unmeasured.",
+            "steps": [
+              {
+                "label": "Zero-adjoint gradient contract",
+                "prs": [
+                  {
+                    "repo": "NVIDIA/warp",
+                    "number": 2064,
+                    "url": "https://github.com/NVIDIA/warp/pull/2064",
+                    "title": "Fix zero-adjoint SVD gradients (GH-2054)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
