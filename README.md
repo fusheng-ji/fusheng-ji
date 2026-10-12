@@ -17,7 +17,7 @@ My research focuses on **video generation and 3D/4D reconstruction**, from camer
 > [!NOTE]
 > I'm interested in **Research Scientist or Algorithm Engineer roles** focused on **video generation and 3D/4D reconstruction**.
 >
-> I'm also seeking **Ph.D. opportunities starting in Fall 2027** in 3D/4D scene representation, video generation, and robot world models. [Get in touch →](mailto:wenboji0420@gmail.com)
+> I'm also seeking **Ph.D. opportunities starting in Fall 2027** in 3D/4D scene representation, video generation, and robot world models.
 
 ---
 
@@ -279,12 +279,6 @@ Selected engineering contributions span generative model execution, GPU kernels,
 <sub>Selected public contributions · PR status verified 2026-10-12.</sub>
 
 <!-- OPEN-SOURCE:END -->
-
----
-
-## Get in Touch
-
-Feel free to [email me](mailto:wenboji0420@gmail.com) to discuss collaborations or exchange ideas.
 
 [xdit-runtime]: https://github.com/xdit-project/xDiT/pull/836
 [fastvideo-inference]: https://github.com/hao-ai-lab/FastVideo/pull/1900

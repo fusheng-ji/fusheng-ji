@@ -39,9 +39,9 @@
 
 开源贡献折叠区内部也使用 bullet list：每个技术主题为一个条目，其分析和 PR 链路位于同一条目内；真实依赖仍使用箭头，独立模块仍使用间隔点。更新器会保留这种列表排版。
 
-页面顺序为 About Me（含 NOTE）→ Experiences → Open Source Contributions → Get in Touch。`Experiences` 先展示视频生成与重建研究背景，开源贡献随后展示工程能力。五段经历包含 Agile Robots、TUM 硕士论文、ViDS、CSG-Fusion 和 ImFusion；每段仅保留机构、研究主题、角色或项目性质、日期及一句职责介绍，项目链接保留在简介中。当前研究使用进行时，Oxford VGG 标注为合作机构。该部分在生成标记之外，按人工履历维护，不由每周 PR 更新改写。
+页面顺序为 About Me（含 NOTE）→ Experiences → Open Source Contributions。`Experiences` 先展示视频生成与重建研究背景，开源贡献随后展示工程能力。五段经历包含 Agile Robots、TUM 硕士论文、ViDS、CSG-Fusion 和 ImFusion；每段仅保留机构、研究主题、角色或项目性质、日期及一句职责介绍，项目链接保留在简介中。当前研究使用进行时，Oxford VGG 标注为合作机构。该部分在生成标记之外，按人工履历维护，不由每周 PR 更新改写。
 
-本地 `output/experiences-evidence.json` 记录职责依据及此前版本差异，不包含在上传包中。用户已确认 ViDS 标注为 Guided Research、CSG-Fusion 时间为 `Feb 2024–Aug 2025`、TUM 硕士论文时间为 `Feb 2026–Present`。五段经历的日期统一使用月份缩写、年份和连接号 `–`，不单独加粗。Get in Touch 仅保留一句联系、合作与交流邀请，不重复 NOTE 中的职位或博士申请意向；其余个人贡献表述保持原样。
+本地 `output/experiences-evidence.json` 记录职责依据及此前版本差异，不包含在上传包中。用户已确认 ViDS 标注为 Guided Research、CSG-Fusion 时间为 `Feb 2024–Aug 2025`、TUM 硕士论文时间为 `Feb 2026–Present`。五段经历的日期统一使用月份缩写、年份和连接号 `–`，不单独加粗。邮箱仅保留在顶部导航中，正文不再设置单独的联系模块或重复的邮箱邀请；NOTE 继续保留职位与博士申请意向，其余个人贡献表述保持原样。
 
 ## 更新节奏与失败处理
 
