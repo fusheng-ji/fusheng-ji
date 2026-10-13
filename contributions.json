@@ -231,19 +231,6 @@
               ]
             }
           ]
-        },
-        {
-          "title": "LoRA metadata scaling — closed proposal",
-          "kind": "independent",
-          "analysis": "The proposal applies metadata alpha/rank scaling before adapter conversion while preserving per-layer alpha precedence. It was closed without merging; the recorded MiniMax-H3 tests are evidence for the proposal, not proof of upstream adoption.",
-          "steps": [
-            {
-              "label": "LoRA metadata scaling",
-              "prs": [
-                "https://github.com/modelscope/DiffSynth-Studio/pull/1719"
-              ]
-            }
-          ]
         }
       ]
     },

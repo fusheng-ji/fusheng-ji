@@ -140,10 +140,6 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
     JoyAI model onloading [#1725](https://github.com/modelscope/DiffSynth-Studio/pull/1725 "fix(joyai): use the pipeline&#x27;s model names in onload_model_names") (Merged) · uv dependency resolution [#1723](https://github.com/modelscope/DiffSynth-Studio/pull/1723 "fix(build): make the project resolvable with uv") (Merged)
 
-  - **LoRA metadata scaling — closed proposal.** The proposal applies metadata alpha/rank scaling before adapter conversion while preserving per-layer alpha precedence. It was closed without merging; the recorded MiniMax-H3 tests are evidence for the proposal, not proof of upstream adoption.
-
-    LoRA metadata scaling [#1719](https://github.com/modelscope/DiffSynth-Studio/pull/1719 "fix(lora): apply the alpha stored in safetensors metadata") (Closed)
-
   </details>
 
 - **[Diffusers](https://github.com/huggingface/diffusers)** · Branch-aware video cache integration
