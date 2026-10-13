@@ -176,26 +176,71 @@
     {
       "repository": "modelscope/DiffSynth-Studio",
       "name": "DiffSynth-Studio",
-      "title": "Adapter semantics and memory-efficient execution",
+      "title": "Reliable generation pipelines and memory-efficient execution",
       "area": "Generative Model Systems",
-      "summary": "Proposed LoRA scaling and VAE tiling fixes preserve adapter semantics and memory-saving execution.",
+      "summary": "Merged fixes improve VAE memory use, attention precision, conditioning alignment, and pipeline model residency.",
       "expanded": false,
       "chains": [
         {
-          "title": "Independent pipeline modules",
+          "title": "Memory-efficient VAE execution",
           "kind": "independent",
-          "analysis": "LoRA loading applies alpha/rank metadata; QwenImage VAE encoding and decoding execute spatial tiling instead of ignoring the requested memory-saving path.",
+          "analysis": "Merged Qwen-Image VAE tiling blends overlapping spatial tiles and handles image boundaries. With BF16 Qwen-Image weights, 2048 × 2048 images, 30 denoising steps, tile size/stride 128/64, and one B200, the PR reports incremental VAE decode memory falling from 8.26 to 2.11 GiB and encode memory from 7.51 to 1.88 GiB versus non-tiled execution. Untiled outputs remain bit-identical; tiled outputs differ slightly, with reported PSNR of 54.9 dB for text-to-image and 50.2 dB for image-to-image.",
           "steps": [
             {
-              "label": "LoRA scaling",
+              "label": "Qwen-Image VAE tiling",
               "prs": [
-                "https://github.com/modelscope/DiffSynth-Studio/pull/1719"
+                "https://github.com/modelscope/DiffSynth-Studio/pull/1720"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Attention precision and video conditioning",
+          "kind": "independent",
+          "analysis": "FLUX.2 casts Q/K to the value dtype after KV-cache concatenation, restoring BF16 FlashAttention execution under autocast. Real-weight FLUX.2-klein-base-4B LoRA training completes 50 finite-loss steps on a B200 with torch 2.12.0 and flash-attn 2.8.3.post1. An independent Wan VACE fix trims control videos and masks to num_frames; reported 480 × 832, 49-frame Wan2.1-VACE-1.3B outputs at 30 steps match pre-trimmed inputs bitwise. These are separate precision and conditioning contracts.",
+          "steps": [
+            {
+              "label": "FLUX.2 attention dtype",
+              "prs": [
+                "https://github.com/modelscope/DiffSynth-Studio/pull/1718"
               ]
             },
             {
-              "label": "VAE tiling",
+              "label": "Wan VACE frame bounds",
               "prs": [
-                "https://github.com/modelscope/DiffSynth-Studio/pull/1720"
+                "https://github.com/modelscope/DiffSynth-Studio/pull/1721"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Model residency and dependency resolution",
+          "kind": "independent",
+          "analysis": "JoyAI-Image uses pipeline attribute names for VRAM onloading and split-training classification, and aligns edit-unit output declarations. Real-weight 1024 × 1024, 30-step B200 editing tests run with CUDA onloading and match CPU-onload outputs pixel-for-pixel. A separate uv packaging fix scopes the PyTorch CPU index, declares conflicting extras, and corrects the PyWavelets dependency. Packaging validation covers lock and dry-run dependency resolution, without claiming an Ascend-device execution test.",
+          "steps": [
+            {
+              "label": "JoyAI model onloading",
+              "prs": [
+                "https://github.com/modelscope/DiffSynth-Studio/pull/1725"
+              ]
+            },
+            {
+              "label": "uv dependency resolution",
+              "prs": [
+                "https://github.com/modelscope/DiffSynth-Studio/pull/1723"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "LoRA metadata scaling — closed proposal",
+          "kind": "independent",
+          "analysis": "The proposal applies metadata alpha/rank scaling before adapter conversion while preserving per-layer alpha precedence. It was closed without merging; the recorded MiniMax-H3 tests are evidence for the proposal, not proof of upstream adoption.",
+          "steps": [
+            {
+              "label": "LoRA metadata scaling",
+              "prs": [
+                "https://github.com/modelscope/DiffSynth-Studio/pull/1719"
               ]
             }
           ]

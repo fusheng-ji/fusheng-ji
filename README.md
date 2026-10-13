@@ -120,17 +120,29 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-- **[DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio)** · Adapter semantics and memory-efficient execution
+- **[DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio)** · Reliable generation pipelines and memory-efficient execution
 
-  Proposed LoRA scaling and VAE tiling fixes preserve adapter semantics and memory-saving execution.
+  Merged fixes improve VAE memory use, attention precision, conditioning alignment, and pipeline model residency.
 
   <details>
 
   <summary>Technical details and selected PRs</summary>
 
-  - **Independent pipeline modules.** LoRA loading applies alpha/rank metadata; QwenImage VAE encoding and decoding execute spatial tiling instead of ignoring the requested memory-saving path.
+  - **Memory-efficient VAE execution.** Merged Qwen-Image VAE tiling blends overlapping spatial tiles and handles image boundaries. With BF16 Qwen-Image weights, 2048 × 2048 images, 30 denoising steps, tile size/stride 128/64, and one B200, the PR reports incremental VAE decode memory falling from 8.26 to 2.11 GiB and encode memory from 7.51 to 1.88 GiB versus non-tiled execution. Untiled outputs remain bit-identical; tiled outputs differ slightly, with reported PSNR of 54.9 dB for text-to-image and 50.2 dB for image-to-image.
 
-    LoRA scaling [#1719](https://github.com/modelscope/DiffSynth-Studio/pull/1719 "fix(lora): apply the alpha stored in safetensors metadata") (Open) · VAE tiling [#1720](https://github.com/modelscope/DiffSynth-Studio/pull/1720 "fix(qwen-image): implement tiled encode and decode in QwenImageVAE") (Open)
+    Qwen-Image VAE tiling [#1720](https://github.com/modelscope/DiffSynth-Studio/pull/1720 "fix(qwen-image): implement tiled encode and decode in QwenImageVAE") (Merged)
+
+  - **Attention precision and video conditioning.** FLUX.2 casts Q/K to the value dtype after KV-cache concatenation, restoring BF16 FlashAttention execution under autocast. Real-weight FLUX.2-klein-base-4B LoRA training completes 50 finite-loss steps on a B200 with torch 2.12.0 and flash-attn 2.8.3.post1. An independent Wan VACE fix trims control videos and masks to num\_frames; reported 480 × 832, 49-frame Wan2.1-VACE-1.3B outputs at 30 steps match pre-trimmed inputs bitwise. These are separate precision and conditioning contracts.
+
+    FLUX.2 attention dtype [#1718](https://github.com/modelscope/DiffSynth-Studio/pull/1718 "fix(flux2): cast query and key to the value dtype before attention") (Merged) · Wan VACE frame bounds [#1721](https://github.com/modelscope/DiffSynth-Studio/pull/1721 "fix(wan): trim vace_video to num_frames") (Merged)
+
+  - **Model residency and dependency resolution.** JoyAI-Image uses pipeline attribute names for VRAM onloading and split-training classification, and aligns edit-unit output declarations. Real-weight 1024 × 1024, 30-step B200 editing tests run with CUDA onloading and match CPU-onload outputs pixel-for-pixel. A separate uv packaging fix scopes the PyTorch CPU index, declares conflicting extras, and corrects the PyWavelets dependency. Packaging validation covers lock and dry-run dependency resolution, without claiming an Ascend-device execution test.
+
+    JoyAI model onloading [#1725](https://github.com/modelscope/DiffSynth-Studio/pull/1725 "fix(joyai): use the pipeline&#x27;s model names in onload_model_names") (Merged) · uv dependency resolution [#1723](https://github.com/modelscope/DiffSynth-Studio/pull/1723 "fix(build): make the project resolvable with uv") (Merged)
+
+  - **LoRA metadata scaling — closed proposal.** The proposal applies metadata alpha/rank scaling before adapter conversion while preserving per-layer alpha precedence. It was closed without merging; the recorded MiniMax-H3 tests are evidence for the proposal, not proof of upstream adoption.
+
+    LoRA metadata scaling [#1719](https://github.com/modelscope/DiffSynth-Studio/pull/1719 "fix(lora): apply the alpha stored in safetensors metadata") (Closed)
 
   </details>
 
@@ -178,7 +190,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **MiniMax-H3 conditioning.** These representative stages belong to a larger PR stack: three-modality AdaLN projection, fused RMSNorm/modulation, and sequence-parallel reductions with fixed accumulation order. Reported BF16 tests on 2/4/8 B200 ranks match single-GPU outputs and gradients bitwise in a norm/residual region with seeded sublayer stand-ins. A one-block closeout adds per-node forward/backward drift reporting; 11 of 17 nodes still use interim operators or provider replay. The latest evidence migration preserves historical measurements.
 
-    AdaLN projection [#485](https://github.com/RL-Align/RL-Kernel/pull/485 "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/9)") (Open) · Fused norm and modulation [#487](https://github.com/RL-Align/RL-Kernel/pull/487 "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/9)") (Open) · Sequence-parallel reductions [#494](https://github.com/RL-Align/RL-Kernel/pull/494 "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/9)") (Open) · One-block drift validation [#539](https://github.com/RL-Align/RL-Kernel/pull/539 "[WS1][CUDA][MiniMax-H3] ws1_one_h3_block: one real block forward/backward with first-drift report (RFC #420 stack 10/10)") (Open)
+    AdaLN projection [#485](https://github.com/RL-Align/RL-Kernel/pull/485 "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/9)") (Open) · Fused norm and modulation [#487](https://github.com/RL-Align/RL-Kernel/pull/487 "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/9)") (Open) · Sequence-parallel reductions [#494](https://github.com/RL-Align/RL-Kernel/pull/494 "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/9)") (Open) · One-block drift validation [#539](https://github.com/RL-Align/RL-Kernel/pull/539 "feat(h3): extend block validation to full-model and generation qualification") (Open)
 
   - **Qwen3-Next normalization.** The stack restores CUDA dispatch, specifies zero-centred normalization, adds gated forward/backward kernels, then defines GDN decode-state goldens. The final stage supplies PyTorch recurrent and convolution state references. Reference and provider checks expose casting and state differences before model integration.
 
@@ -276,7 +288,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-<sub>Selected public contributions · PR status verified 2026-10-12.</sub>
+<sub>Selected public contributions · PR status verified 2026-10-13.</sub>
 
 <!-- OPEN-SOURCE:END -->
 

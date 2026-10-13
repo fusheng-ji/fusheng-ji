@@ -33,9 +33,9 @@
 
 文案参考 [ASu 的 great-resume](https://github.com/Hisn00w/ASu-skills/blob/main/skills/great-resume/SKILL.md)，按真实经历与可核验证据整理求职定位；SEO/GEO 内容依据 [Google 官方 AI 搜索指南](https://developers.google.com/search/docs/appearance/ai-features)，优化重点是可读文本、明确实体、可靠内容和语义层级。GitHub 托管页面的索引和页面级元数据由平台管理，本次仅调整 README 内容；无需加入隐藏关键词、JSON-LD 或额外 AI 文件。
 
-项目公开摘要保持一句简短英文，突出核心工程改动与价值，不罗列完整技术链；已合并和在研部分分开表述，未合并的工作使用 proposed / draft 等限定。新增 PR 的技术链路、性能数字、实验条件及完整证据保留在项目折叠区，由人工维护。当前稿件于 2026-10-12 核验了 50 个精选 PR；单纯编辑润色时沿用已有快照，避免将文案修改误记为重新查询 GitHub。
+项目公开摘要保持一句简短英文，突出核心工程改动与价值，不罗列完整技术链；已合并和在研部分分开表述，未合并的工作使用 proposed / draft 等限定。新增 PR 的技术链路、性能数字、实验条件及完整证据保留在项目折叠区，由人工维护。当前稿件于 2026-10-13 核验了 54 个精选 PR；单纯编辑润色时沿用已有快照，避免将文案修改误记为重新查询 GitHub。
 
-本次保留三个领域和 11 个项目，补入 11 个关联 PR：SGLang 的 exact-tier 分片注意力、FastVideo 的 GB10 融合布局、RL-Kernel 的 H3 单 block 验证／Qwen3-Next 集成验证链／递归 autograd，以及 gsplat 和 Warp 的独立梯度修复。Diffusers #14948 已从 Draft 转为 Open。PR 状态以 GitHub API 为准；正文的待审、历史测量和适用范围单独说明，不把 Open 状态视为已合并或已采用。完整账户的 Open 查询仅用于人工筛选，未改变每周只核验精选 PR 的机制。
+README 保留三个领域和 11 个项目。2026-10-12 补入 11 个关联 PR，涵盖 SGLang 分片注意力、FastVideo GB10 融合布局、RL-Kernel 模型验证和 autograd，以及 gsplat、Warp 梯度修复；Diffusers #14948 已从 Draft 转为 Open。2026-10-13 更新 DiffSynth-Studio：#1720 已合并，新增已合并的 #1718、#1721、#1723、#1725；#1719 已关闭但未合并，折叠区明确保留为 closed proposal，不将其写成已采用成果。五项合并工作按 VAE 内存、精度与条件约束、模型驻留与依赖解析组织为独立技术主题，相关指标保留实验条件。PR 状态以 GitHub API 为准；全文精选元数据已重新核验，人工筛选未改变每周只核验精选 PR 的机制。
 
 开源贡献折叠区内部也使用 bullet list：每个技术主题为一个条目，其分析和 PR 链路位于同一条目内；真实依赖仍使用箭头，独立模块仍使用间隔点。更新器会保留这种列表排版。
 
