@@ -278,6 +278,36 @@ def _link_title(value):
     return html.escape(" ".join(value.split()), quote=True).replace("\\", "&#92;")
 
 
+def _visible_project(project):
+    """Filter display evidence without changing the saved metadata or config."""
+    chains = []
+    project_filtered = False
+    for chain in project["chains"]:
+        steps = []
+        chain_filtered = False
+        for step in chain["steps"]:
+            prs = [pr for pr in step["prs"] if pr["status"] != "closed"]
+            step_filtered = len(prs) != len(step["prs"])
+            chain_filtered = chain_filtered or step_filtered
+            if prs:
+                steps.append(dict(label="Selected PRs" if step_filtered else step["label"], prs=prs))
+        project_filtered = project_filtered or chain_filtered
+        if steps:
+            visible = dict(chain, steps=steps)
+            if chain_filtered:
+                # A missing prerequisite does not establish a new dependency.
+                # Shared prose may describe removed work, so show evidence only.
+                visible.update(title="Selected PRs", analysis="", kind="independent")
+            chains.append(visible)
+    if not chains:
+        return None
+    visible = dict(project, chains=chains)
+    if project_filtered:
+        # Do not retain aggregate claims that may rely on a removed PR.
+        visible.update(title="", summary="")
+    return visible
+
+
 def _render_project(project):
     details = "<details open>" if project["expanded"] else "<details>"
     prefix = "- "
@@ -287,13 +317,18 @@ def _render_project(project):
         source = html.escape(logo["src"], quote=True)
         alt = html.escape(logo["alt"], quote=True)
         prefix += f'<a href="{href}"><img src="{source}" alt="{alt}" width="64" height="36" align="middle"></a> '
-    lines = [
-        f"{prefix}**[{markdown_text(project['name'])}](https://github.com/{project['repository']})** · {markdown_text(project['title'])}",
-        "", "  " + markdown_text(project["summary"]), "",
-        "  " + details, "", "  <summary>Technical details and selected PRs</summary>", "",
-    ]
+    heading = f"{prefix}**[{markdown_text(project['name'])}](https://github.com/{project['repository']})**"
+    if project["title"]:
+        heading += " · " + markdown_text(project["title"])
+    lines = [heading, ""]
+    if project["summary"]:
+        lines += ["  " + markdown_text(project["summary"]), ""]
+    lines += ["  " + details, "", "  <summary>Technical details and selected PRs</summary>", ""]
     for chain in project["chains"]:
-        lines += [f"  - **{markdown_text(chain['title'])}.** {markdown_text(chain['analysis'])}", ""]
+        description = f"  - **{markdown_text(chain['title'])}.**"
+        if chain["analysis"]:
+            description += " " + markdown_text(chain["analysis"])
+        lines += [description, ""]
         steps = []
         for step in chain["steps"]:
             links = []
@@ -313,8 +348,13 @@ def render_section(snapshot, verified_on):
     lines = [markdown_text(snapshot["introduction"]), ""]
     groups = {}
     for project in snapshot["projects"]:
-        groups.setdefault(project["area"], []).append(project)
+        projects = groups.setdefault(project["area"], [])
+        visible = _visible_project(project)
+        if visible is not None:
+            projects.append(visible)
     for area, projects in groups.items():
+        if not projects:
+            continue
         lines += ["### " + markdown_text(area), ""]
         for project in projects:
             lines.extend(_render_project(project))

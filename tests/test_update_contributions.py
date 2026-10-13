@@ -50,7 +50,7 @@ def pr(number, repo="example/project", *, state="open", merged=False, draft=Fals
 
 def fixtures():
     return [
-        pr(1, state="closed", merged=True), pr(2), pr(3, state="closed"),
+        pr(1, state="closed", merged=True), pr(2), pr(3),
         pr(4, "another/library", draft=True), pr(5, "another/library"),
     ]
 
@@ -260,7 +260,9 @@ class SnapshotTests(unittest.TestCase):
         self.assertTrue(all("logo" not in project for project in snapshot["projects"]))
 
     def test_snapshot_distinguishes_merged_open_draft_and_unmerged_closed(self):
-        selected = self.all_prs(updater.build_snapshot(fixtures(), config()))
+        items = fixtures()
+        items[2]["state"] = "closed"
+        selected = self.all_prs(updater.build_snapshot(items, config()))
         self.assertEqual([item["status"] for item in selected], ["merged", "open", "closed", "draft", "open"])
         self.assertEqual([item["draft"] for item in selected], [False, False, False, True, False])
         self.assertEqual([item["url"] for item in selected], [item["html_url"] for item in fixtures()])
@@ -511,13 +513,84 @@ class RenderingTests(unittest.TestCase):
         self.assertIn("&lt;script&gt;", section)
         self.assertIn(items[0]["html_url"], section)
 
-    def test_all_four_statuses_and_pr_links_are_retained_inside_project_details(self):
-        section = updater.render_section(updater.build_snapshot(fixtures(), config()), TODAY.isoformat())
+    def test_merged_open_and_draft_links_are_retained_but_unmerged_closed_is_hidden(self):
+        items = fixtures()
+        items[2]["state"] = "closed"
+        snapshot = updater.build_snapshot(items, config())
+        before = copy.deepcopy(snapshot)
+        section = updater.render_section(snapshot, TODAY.isoformat())
         details = "\n".join(re.findall(r"<details\b[^>]*>(.*?)</details>", section, re.DOTALL))
-        for status in ("Merged", "Open", "Draft", "Closed"):
+        for status in ("Merged", "Open", "Draft"):
             self.assertIn(status, details)
-        for item in fixtures():
+        self.assertNotIn("Closed", section)
+        self.assertNotIn(items[2]["html_url"], section)
+        self.assertNotIn("Separate maintenance", section)
+        self.assertNotIn("Independent compatibility work.", section)
+        for item in [items[0], items[1], items[3], items[4]]:
             self.assertIn(item["html_url"], details)
+        self.assertEqual(snapshot, before)
+        self.assertEqual(snapshot["projects"][0]["chains"][1]["steps"][0]["prs"][0]["status"], "closed")
+
+    def test_closed_middle_step_does_not_bridge_dependencies_or_keep_shared_claims(self):
+        settings = config()
+        chain = settings["projects"][0]["chains"][0]
+        chain["steps"].append({"label": "Final validation", "prs": ["https://github.com/example/project/pull/3"]})
+        settings["projects"][0]["chains"] = [chain]
+        items = fixtures()
+        items[1]["state"] = "closed"
+        section = updater.render_section(updater.build_snapshot(items, settings), TODAY.isoformat())
+        self.assertIn(items[0]["html_url"], section)
+        self.assertIn(items[2]["html_url"], section)
+        self.assertNotIn(items[1]["html_url"], section)
+        self.assertNotIn(" → ", section)
+        self.assertIn(" · ", section)
+        self.assertNotIn(chain["analysis"], section)
+        self.assertNotIn(chain["title"], section)
+        self.assertNotIn(settings["projects"][0]["summary"], section)
+        self.assertNotIn(settings["projects"][0]["title"], section)
+
+    def test_mixed_pr_step_keeps_surviving_links_with_a_neutral_label(self):
+        settings = config()
+        settings["projects"][0]["chains"] = [settings["projects"][0]["chains"][0]]
+        step = settings["projects"][0]["chains"][0]["steps"][0]
+        step["prs"].append("https://github.com/example/project/pull/3")
+        items = fixtures()
+        items[2]["state"] = "closed"
+        section = updater.render_section(updater.build_snapshot(items, settings), TODAY.isoformat())
+        self.assertIn(items[0]["html_url"], section)
+        self.assertIn(items[1]["html_url"], section)
+        self.assertNotIn(items[2]["html_url"], section)
+        self.assertNotIn(step["label"], section)
+        self.assertIn("    Selected PRs ", section)
+
+    def test_projects_and_areas_with_no_visible_prs_are_omitted(self):
+        items = fixtures()
+        for item in items[:3]:
+            item.update(state="closed", merged_at=None)
+        section = updater.render_section(updater.build_snapshot(items, config()), TODAY.isoformat())
+        self.assertNotIn("Example Project", section)
+        self.assertNotIn("### Video generation", section)
+        self.assertIn("Another Library", section)
+        self.assertEqual(section.count("<summary>Technical details and selected PRs</summary>"), 1)
+
+    def test_all_closed_selection_renders_no_empty_groups_or_details(self):
+        items = fixtures()
+        for item in items:
+            item.update(state="closed", merged_at=None)
+        section = updater.render_section(updater.build_snapshot(items, config()), TODAY.isoformat())
+        self.assertNotIn("### ", section)
+        self.assertNotIn("<details", section)
+        self.assertNotIn("/pull/", section)
+        self.assertIn("PR status verified", section)
+
+    def test_filtering_preserves_first_area_order_in_interleaved_config(self):
+        settings, items = self.interleaved_areas()
+        for item in items[:3]:
+            item.update(state="closed", merged_at=None)
+        section = updater.render_section(updater.build_snapshot(items, settings), TODAY.isoformat())
+        self.assertLess(section.index("### Video generation"), section.index("### Model integration"))
+        self.assertIn("Third Tool", section)
+        self.assertNotIn("Example Project", section)
 
 
 class ReplacementTests(unittest.TestCase):
@@ -649,6 +722,32 @@ class UpdateTests(unittest.TestCase):
         self.assertFalse(updater.update(self.root, changed_metadata, self.config, TODAY + timedelta(days=7)))
         self.assertEqual(self.files(), before)
         self.assertEqual(self.mtimes(), mtimes)
+
+    def test_close_then_reopen_filters_display_without_mutating_config_and_is_idempotent(self):
+        original_config = copy.deepcopy(self.config)
+        updater.update(self.root, self.items, self.config, TODAY)
+        changed = copy.deepcopy(self.items)
+        changed[1]["state"] = "closed"
+        self.assertTrue(updater.update(self.root, changed, self.config, TODAY + timedelta(days=7)))
+        readme = (self.root / "README.md").read_text(encoding="utf-8")
+        self.assertNotIn(changed[1]["html_url"], readme)
+        self.assertNotIn("(Closed)", readme)
+        self.assertNotIn(self.config["projects"][0]["chains"][0]["analysis"], readme)
+        self.assertIn(changed[0]["html_url"], readme)
+        state = json.loads((self.root / "assets/contributions-data.json").read_text(encoding="utf-8"))
+        self.assertEqual(state["data"]["projects"][0]["chains"][0]["steps"][1]["prs"][0]["status"], "closed")
+        before, mtimes = self.files(), self.mtimes()
+        self.assertFalse(updater.update(self.root, changed, self.config, TODAY + timedelta(days=14)))
+        self.assertEqual(self.files(), before)
+        self.assertEqual(self.mtimes(), mtimes)
+        changed[1]["state"] = "open"
+        self.assertTrue(updater.update(self.root, changed, self.config, TODAY + timedelta(days=15)))
+        reopened = (self.root / "README.md").read_text(encoding="utf-8")
+        self.assertIn(changed[1]["html_url"], reopened)
+        self.assertIn(self.config["projects"][0]["summary"], reopened)
+        self.assertIn(self.config["projects"][0]["chains"][0]["analysis"], reopened)
+        self.assertIn(" → ", reopened)
+        self.assertEqual(self.config, original_config)
 
     def test_refresh_occurs_at_42_days_but_not_at_41(self):
         updater.update(self.root, self.items, self.config, TODAY)
