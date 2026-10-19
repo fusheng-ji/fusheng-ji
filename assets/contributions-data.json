@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "verified_on": "2026-10-13",
+  "verified_on": "2026-10-19",
   "data": {
     "username": "fusheng-ji",
     "introduction": "Selected engineering contributions span generative model execution, GPU kernels, and differentiable rendering. Each repository is an independent project.",
@@ -92,7 +92,7 @@
                     "number": 837,
                     "url": "https://github.com/xdit-project/xDiT/pull/837",
                     "title": "fix(sp): keep sequence-parallel padding out of attention keys",
-                    "status": "open",
+                    "status": "closed",
                     "draft": false
                   }
                 ]
@@ -193,7 +193,7 @@
                     "repo": "sgl-project/sglang",
                     "number": 43152,
                     "url": "https://github.com/sgl-project/sglang/pull/43152",
-                    "title": "[diffusion] model: add native Ovis-Image support",
+                    "title": "[Feat] ovis-image: add native Ovis-Image support",
                     "status": "open",
                     "draft": false
                   }
@@ -233,7 +233,7 @@
                     "repo": "sgl-project/sglang",
                     "number": 43242,
                     "url": "https://github.com/sgl-project/sglang/pull/43242",
-                    "title": "[diffusion] keep TP/Ulysses head shards on the unsharded torch SDPA kernel",
+                    "title": "[Fix] diffusion: keep TP/Ulysses head shards on the unsharded torch SDPA kernel",
                     "status": "open",
                     "draft": false
                   }
@@ -503,7 +503,7 @@
                     "repo": "RL-Align/RL-Kernel",
                     "number": 485,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/485",
-                    "title": "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/9)",
+                    "title": "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/10)",
                     "status": "open",
                     "draft": false
                   }
@@ -516,7 +516,7 @@
                     "repo": "RL-Align/RL-Kernel",
                     "number": 487,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/487",
-                    "title": "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/9)",
+                    "title": "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/10)",
                     "status": "open",
                     "draft": false
                   }
@@ -529,7 +529,7 @@
                     "repo": "RL-Align/RL-Kernel",
                     "number": 494,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/494",
-                    "title": "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/9)",
+                    "title": "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/10)",
                     "status": "open",
                     "draft": false
                   }
@@ -542,7 +542,7 @@
                     "repo": "RL-Align/RL-Kernel",
                     "number": 539,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/539",
-                    "title": "feat(h3): extend block validation to full-model and generation qualification",
+                    "title": "[WS1][CUDA][MiniMax-H3] ws1_one_h3_block + full-model qualification: block 0 node-by-node and 50-block/generation gates (RFC #420 stack 10/10)",
                     "status": "open",
                     "draft": false
                   }
@@ -621,7 +621,7 @@
                     "repo": "RL-Align/RL-Kernel",
                     "number": 503,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/503",
-                    "title": "[WS1][CUDA][Qwen3-Next] MoE route/combine contract with a batch-invariant grouped expert GEMM (RFC #428 stack 5/8)",
+                    "title": "[WS1][CUDA][Qwen3-Next] MoE route/combine contract with a batch-invariant grouped expert GEMM (RFC #428 stack 5/11)",
                     "status": "open",
                     "draft": false
                   }
@@ -634,7 +634,7 @@
                     "repo": "RL-Align/RL-Kernel",
                     "number": 507,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/507",
-                    "title": "[WS1][CUDA][Qwen3-Next] TP4 GDN, convolution and D=256 attention mixers on real weights (RFC #428 stack 6/8)",
+                    "title": "[WS1][CUDA][Qwen3-Next] TP4 GDN, convolution and D=256 attention mixers on real weights (RFC #428 stack 6/11)",
                     "status": "open",
                     "draft": false
                   }
@@ -647,7 +647,7 @@
                     "repo": "RL-Align/RL-Kernel",
                     "number": 543,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/543",
-                    "title": "[WS1][CUDA][Qwen3-Next] Full-model chain: vLLM rollout vs VIME recompute, raw-bit through two updates and a reload (RFC #428 stack 7/8)",
+                    "title": "[WS1][CUDA][Qwen3-Next] Full-model chain: vLLM rollout vs VIME recompute, raw-bit through two updates and a reload (RFC #428 stack 7/11)",
                     "status": "open",
                     "draft": false
                   }
@@ -660,7 +660,7 @@
                     "repo": "RL-Align/RL-Kernel",
                     "number": 544,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/544",
-                    "title": "[WS1][CUDA][Qwen3-Next] Batch-invariance matrix for the full model, 97/97 cells bitwise (RFC #428 stack 8/8)",
+                    "title": "[WS1][CUDA][Qwen3-Next] Batch-invariance matrix for the full model, 97/97 cells bitwise (RFC #428 stack 8/11)",
                     "status": "open",
                     "draft": false
                   }
@@ -673,7 +673,7 @@
                     "repo": "RL-Align/RL-Kernel",
                     "number": 549,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/549",
-                    "title": "[WS1][CUDA][Qwen3-Next] TP distributed logprob parity: fixed reduction order, selected-token logprob exact across NCCL settings (RFC #428 stack 9/10)",
+                    "title": "[WS1][CUDA][Qwen3-Next] TP distributed logprob parity: fixed reduction order, selected-token logprob exact across NCCL settings (RFC #428 stack 9/11)",
                     "status": "open",
                     "draft": false
                   }

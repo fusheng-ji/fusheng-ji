@@ -58,9 +58,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
 ### Generative Model Systems
 
-- **[xDiT](https://github.com/xdit-project/xDiT)** · Reliable distributed generation
-
-  Merged request isolation and cache fixes strengthen distributed generation; further execution fixes remain proposed.
+- **[xDiT](https://github.com/xdit-project/xDiT)**
 
   <details>
 
@@ -74,9 +72,9 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
     Shape compatibility [#813](https://github.com/xdit-project/xDiT/pull/813 "fix(cache): restart step caches when the token count changes") (Merged) → Request boundaries [#864](https://github.com/xdit-project/xDiT/pull/864 "fix(cache): restart the TeaCache step period on every request") (Merged)
 
-  - **Sequence and prompt masking.** Valid-token bounds first exclude sequence-parallel padding from attention keys; prompt-specific masks then preserve shorter samples in mixed-length Z-Image and Qwen-Image batches. Current validation uses tiny-model parity; historical pretrained comparisons provide additional output evidence, with ring-attention limitations explicit.
+  - **Selected PRs.**
 
-    Valid-key boundaries [#837](https://github.com/xdit-project/xDiT/pull/837 "fix(sp): keep sequence-parallel padding out of attention keys") (Open) → Mixed-length prompt masks [#856](https://github.com/xdit-project/xDiT/pull/856 "fix(sp): honour text masks for batched prompts of different lengths in Z-Image and Qwen-Image") (Open)
+    Mixed-length prompt masks [#856](https://github.com/xdit-project/xDiT/pull/856 "fix(sp): honour text masks for batched prompts of different lengths in Z-Image and Qwen-Image") (Open)
 
   - **Cache layout and execution ownership.** Draft changes align PipeFusion warmup and patch-mode KV layouts, exclude Ideogram padding, and pad/unpad uneven HunyuanVideo shards. A separate runner fix assigns prompt splitting, output gathering, and parallel VAE ownership to one layer each, preventing double processing and missing outputs. These are independent execution contracts, with draft paths still under review.
 
@@ -94,7 +92,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **Native Ovis-Image integration.** A native pipeline connects checkpoint mapping, text conditioning, CFG, TP/SP, offload, and image serving. The PR reports bitwise agreement with pinned Diffusers for tested single-GPU exact-tier runs on B200; parallel runs are checked against explicit BF16 noise controls. Unsupported features fail with explicit errors.
 
-    Ovis-Image model and serving [#43152](https://github.com/sgl-project/sglang/pull/43152 "[diffusion] model: add native Ovis-Image support") (Open)
+    Ovis-Image model and serving [#43152](https://github.com/sgl-project/sglang/pull/43152 "[Feat] ovis-image: add native Ovis-Image support") (Open)
 
   - **Request entry to expert state.** Resetting all DiT caches when a request starts covers experts that never execute denoising step zero, preventing stale TeaCache/Spectrum state across requests.
 
@@ -102,7 +100,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **Sharded SDPA consistency.** Eligible exact-tier torch-SDPA calls pad query rows so TP/Ulysses head shards select the unsharded attention kernel. B200 operator and two-GPU Ulysses tests report bitwise agreement; whole-model differences remain. The proposal retains the existing lossless-tier and unaffected backend behavior.
 
-    Exact-tier head shards [#43242](https://github.com/sgl-project/sglang/pull/43242 "[diffusion] keep TP/Ulysses head shards on the unsharded torch SDPA kernel") (Open)
+    Exact-tier head shards [#43242](https://github.com/sgl-project/sglang/pull/43242 "[Fix] diffusion: keep TP/Ulysses head shards on the unsharded torch SDPA kernel") (Open)
 
   </details>
 
@@ -186,7 +184,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **MiniMax-H3 conditioning.** These representative stages belong to a larger PR stack: three-modality AdaLN projection, fused RMSNorm/modulation, and sequence-parallel reductions with fixed accumulation order. Reported BF16 tests on 2/4/8 B200 ranks match single-GPU outputs and gradients bitwise in a norm/residual region with seeded sublayer stand-ins. A one-block closeout adds per-node forward/backward drift reporting; 11 of 17 nodes still use interim operators or provider replay. The latest evidence migration preserves historical measurements.
 
-    AdaLN projection [#485](https://github.com/RL-Align/RL-Kernel/pull/485 "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/9)") (Open) · Fused norm and modulation [#487](https://github.com/RL-Align/RL-Kernel/pull/487 "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/9)") (Open) · Sequence-parallel reductions [#494](https://github.com/RL-Align/RL-Kernel/pull/494 "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/9)") (Open) · One-block drift validation [#539](https://github.com/RL-Align/RL-Kernel/pull/539 "feat(h3): extend block validation to full-model and generation qualification") (Open)
+    AdaLN projection [#485](https://github.com/RL-Align/RL-Kernel/pull/485 "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/10)") (Open) · Fused norm and modulation [#487](https://github.com/RL-Align/RL-Kernel/pull/487 "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/10)") (Open) · Sequence-parallel reductions [#494](https://github.com/RL-Align/RL-Kernel/pull/494 "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/10)") (Open) · One-block drift validation [#539](https://github.com/RL-Align/RL-Kernel/pull/539 "[WS1][CUDA][MiniMax-H3] ws1_one_h3_block + full-model qualification: block 0 node-by-node and 50-block/generation gates (RFC #420 stack 10/10)") (Open)
 
   - **Qwen3-Next normalization.** The stack restores CUDA dispatch, specifies zero-centred normalization, adds gated forward/backward kernels, then defines GDN decode-state goldens. The final stage supplies PyTorch recurrent and convolution state references. Reference and provider checks expose casting and state differences before model integration.
 
@@ -194,7 +192,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **Qwen3-Next integration and reproducibility.** This dependent stack extends the normalization and state contracts through MoE routing, TP4 mixers, full-model rollout/recompute, batch invariance, and fixed-order distributed logprob. Historical single-node 4 × B200 evidence covers 97 batch-invariance cells and 13 NCCL settings: selected-token logprob and LSE match TP1 on the same logits, while entropy is invariant only at a fixed TP degree. The latest \#549 layout update reproduces archived reports; its fresh GPU validation run is pending.
 
-    MoE route/combine [#503](https://github.com/RL-Align/RL-Kernel/pull/503 "[WS1][CUDA][Qwen3-Next] MoE route/combine contract with a batch-invariant grouped expert GEMM (RFC #428 stack 5/8)") (Open) → TP4 model mixers [#507](https://github.com/RL-Align/RL-Kernel/pull/507 "[WS1][CUDA][Qwen3-Next] TP4 GDN, convolution and D=256 attention mixers on real weights (RFC #428 stack 6/8)") (Open) → Rollout/recompute chain [#543](https://github.com/RL-Align/RL-Kernel/pull/543 "[WS1][CUDA][Qwen3-Next] Full-model chain: vLLM rollout vs VIME recompute, raw-bit through two updates and a reload (RFC #428 stack 7/8)") (Open) → Batch-invariance validation [#544](https://github.com/RL-Align/RL-Kernel/pull/544 "[WS1][CUDA][Qwen3-Next] Batch-invariance matrix for the full model, 97/97 cells bitwise (RFC #428 stack 8/8)") (Open) → Distributed logprob parity [#549](https://github.com/RL-Align/RL-Kernel/pull/549 "[WS1][CUDA][Qwen3-Next] TP distributed logprob parity: fixed reduction order, selected-token logprob exact across NCCL settings (RFC #428 stack 9/10)") (Open)
+    MoE route/combine [#503](https://github.com/RL-Align/RL-Kernel/pull/503 "[WS1][CUDA][Qwen3-Next] MoE route/combine contract with a batch-invariant grouped expert GEMM (RFC #428 stack 5/11)") (Open) → TP4 model mixers [#507](https://github.com/RL-Align/RL-Kernel/pull/507 "[WS1][CUDA][Qwen3-Next] TP4 GDN, convolution and D=256 attention mixers on real weights (RFC #428 stack 6/11)") (Open) → Rollout/recompute chain [#543](https://github.com/RL-Align/RL-Kernel/pull/543 "[WS1][CUDA][Qwen3-Next] Full-model chain: vLLM rollout vs VIME recompute, raw-bit through two updates and a reload (RFC #428 stack 7/11)") (Open) → Batch-invariance validation [#544](https://github.com/RL-Align/RL-Kernel/pull/544 "[WS1][CUDA][Qwen3-Next] Batch-invariance matrix for the full model, 97/97 cells bitwise (RFC #428 stack 8/11)") (Open) → Distributed logprob parity [#549](https://github.com/RL-Align/RL-Kernel/pull/549 "[WS1][CUDA][Qwen3-Next] TP distributed logprob parity: fixed reduction order, selected-token logprob exact across NCCL settings (RFC #428 stack 9/11)") (Open)
 
   - **Memory-efficient logp backward.** A fused CUDA backward writes the returned gradient directly, with no extra temporary workspace; older builds retain a bounded chunked fallback. For BF16 logits with 32,768 rows and vocabulary 151,936 on one B200, the PR reports forward/backward peak memory falling from 46.37 to 9.27 GiB and median latency from 57.1 to 27.2 ms versus the previous VJP. The peak still includes the returned gradient.
 
@@ -284,7 +282,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-<sub>Selected public contributions · PR status verified 2026-10-13.</sub>
+<sub>Selected public contributions · PR status verified 2026-10-19.</sub>
 
 <!-- OPEN-SOURCE:END -->
 
