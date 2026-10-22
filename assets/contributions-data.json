@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "verified_on": "2026-10-19",
+  "verified_on": "2026-10-22",
   "data": {
     "username": "fusheng-ji",
     "introduction": "Selected engineering contributions span generative model execution, GPU kernels, and differentiable rendering. Each repository is an independent project.",
@@ -178,7 +178,7 @@
         "name": "SGLang",
         "title": "Native diffusion serving and cache lifecycle",
         "area": "Generative Model Systems",
-        "summary": "Merged cache resets isolate requests; proposed Ovis-Image serving extends model integration and attention consistency.",
+        "summary": "Merged request-cache resets and FLUX guidance fixes improve diffusion inference correctness; proposed Ovis-Image serving extends model integration and attention consistency.",
         "expanded": false,
         "chains": [
           {
@@ -214,6 +214,26 @@
                     "number": 42437,
                     "url": "https://github.com/sgl-project/sglang/pull/42437",
                     "title": "[diffusion] Reset DiT cache state at the start of each request",
+                    "status": "merged",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "FLUX true CFG",
+            "kind": "independent",
+            "analysis": "Uses true_cfg_scale for the native FLUX branch-combination weight, preserving existing behavior when it is unset. Unit tests and real FLUX.1-dev comparisons on B200 verify the correction; numerical differences from Diffusers remain.",
+            "steps": [
+              {
+                "label": "FLUX true CFG weight",
+                "prs": [
+                  {
+                    "repo": "sgl-project/sglang",
+                    "number": 44260,
+                    "url": "https://github.com/sgl-project/sglang/pull/44260",
+                    "title": "[Fix] flux: use true_cfg_scale as the FLUX CFG weight",
                     "status": "merged",
                     "draft": false
                   }
@@ -492,9 +512,9 @@
         "expanded": false,
         "chains": [
           {
-            "title": "MiniMax-H3 conditioning",
+            "title": "MiniMax-H3 conditioning and integration",
             "kind": "stages",
-            "analysis": "These representative stages belong to a larger PR stack: three-modality AdaLN projection, fused RMSNorm/modulation, and sequence-parallel reductions with fixed accumulation order. Reported BF16 tests on 2/4/8 B200 ranks match single-GPU outputs and gradients bitwise in a norm/residual region with seeded sublayer stand-ins. A one-block closeout adds per-node forward/backward drift reporting; 11 of 17 nodes still use interim operators or provider replay. The latest evidence migration preserves historical measurements.",
+            "analysis": "These representative stages belong to a larger proposed stack spanning conditioning, normalization and sequence-parallel reductions. H100 follow-ups extend validation to real 33B forward/backward execution, rollout/train drift controls, and a 638-tensor checkpoint mapper with a vLLM-Omni adapter for four fused projections. Strict execution is repeatable, while unbound video projections still introduce trajectory drift; zero drift was measured only with those projections diagnostically bound. Adapter validation is limited to TP1, and no speedup is claimed.",
             "steps": [
               {
                 "label": "AdaLN projection",
@@ -543,6 +563,32 @@
                     "number": 539,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/539",
                     "title": "[WS1][CUDA][MiniMax-H3] ws1_one_h3_block + full-model qualification: block 0 node-by-node and 50-block/generation gates (RFC #420 stack 10/10)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Full-model drift controls",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 571,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/571",
+                    "title": "[WS1][CUDA][MiniMax-H3] ws1_full_h3_transformer and ws1_dual_trajectory: 33B forward/backward and rollout-vs-train control (RFC #420 stack 5/5)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Checkpoint mapping and rollout adapter",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 575,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/575",
+                    "title": "[WS1][CUDA][MiniMax-H3] checkpoint mapper and the vLLM-Omni rollout adapter (RFC #420 stack 7/7)",
                     "status": "open",
                     "draft": false
                   }
@@ -612,7 +658,7 @@
           {
             "title": "Qwen3-Next integration and reproducibility",
             "kind": "dependency",
-            "analysis": "This dependent stack extends the normalization and state contracts through MoE routing, TP4 mixers, full-model rollout/recompute, batch invariance, and fixed-order distributed logprob. Historical single-node 4 × B200 evidence covers 97 batch-invariance cells and 13 NCCL settings: selected-token logprob and LSE match TP1 on the same logits, while entropy is invariant only at a fixed TP degree. The latest #549 layout update reproduces archived reports; its fresh GPU validation run is pending.",
+            "analysis": "The proposed stack connects MoE routing, TP4 model execution, rollout/recompute checks and fixed-order distributed logprobs. Recorded B200 reruns verify 97/97 batch-invariance cells and invariant digests at 17 TP4 points across 13 NCCL settings. Selected-token logprobs and LSE match TP1 on the same logits; entropy remains TP-degree dependent. An EP4 follow-up verifies 16/16 rollout/recompute cases and 97/97 batch-invariance cells. EP4 retains its own numerical profile, and its training and checkpoint-export paths remain disabled.",
             "steps": [
               {
                 "label": "MoE route/combine",
@@ -678,6 +724,19 @@
                     "draft": false
                   }
                 ]
+              },
+              {
+                "label": "Expert-parallel rollout/replay",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 557,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/557",
+                    "title": "[WS1][CUDA][Qwen3-Next] EP4 distributed logprob parity: expert-parallel MoE, full-model L2 bitwise on TP4 x EP4 (RFC #428 stack 10/11)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
               }
             ]
           },
@@ -728,7 +787,7 @@
         "name": "FlashAttention",
         "title": "SM100 attention kernels and validation",
         "area": "GPU Training & Inference",
-        "summary": "Proposed SM100 attention fixes address backward correctness, cache isolation, and reproducible kernel validation.",
+        "summary": "Merged SM100 forward cache isolation prevents NaN contamination from unused V-cache entries; proposed work addresses backward correctness, scheduling, and reproducible validation.",
         "expanded": false,
         "chains": [
           {
@@ -764,7 +823,7 @@
                     "number": 2983,
                     "url": "https://github.com/Dao-AILab/flash-attention/pull/2983",
                     "title": "[CuTe, Fwd, SM100] Prevent NaN contamination from unused V cache entries",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -948,9 +1007,9 @@
       {
         "repository": "NVIDIA/warp",
         "name": "NVIDIA Warp",
-        "title": "Half-precision numerical stability",
+        "title": "Numerical stability and sparse GPU products",
         "area": "3D Geometry & Differentiable Rendering",
-        "summary": "Draft FP16 SVD and proposed zero-adjoint fixes address distinct forward and backward NaN paths.",
+        "summary": "Draft FP16 SVD and proposed zero-adjoint fixes address forward and backward NaNs; proposed sparse extensions add mixed-precision arithmetic and optional CUDA row packing.",
         "expanded": false,
         "chains": [
           {
@@ -986,6 +1045,39 @@
                     "number": 2064,
                     "url": "https://github.com/NVIDIA/warp/pull/2064",
                     "title": "Fix zero-adjoint SVD gradients (GH-2054)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Mixed-precision sparse products",
+            "kind": "dependency",
+            "analysis": "Sparse products keep matrix storage in FP32 while multiplying FP64 vectors, accumulating and scaling in FP64 without allocating a converted matrix. A dependent, optional CUDA row-packing path supports non-transposed products while preserving default dispatch. CPU and B200 correctness checks cover the proposed paths; performance depends on sparse structure, and no end-to-end solver speedup is claimed.",
+            "steps": [
+              {
+                "label": "Mixed-precision sparse arithmetic",
+                "prs": [
+                  {
+                    "repo": "NVIDIA/warp",
+                    "number": 2072,
+                    "url": "https://github.com/NVIDIA/warp/pull/2072",
+                    "title": "Support mixed-precision BSR products (GH-2069)",
+                    "status": "open",
+                    "draft": false
+                  }
+                ]
+              },
+              {
+                "label": "Optional CUDA row packing",
+                "prs": [
+                  {
+                    "repo": "NVIDIA/warp",
+                    "number": 2073,
+                    "url": "https://github.com/NVIDIA/warp/pull/2073",
+                    "title": "Add optional row-packed CUDA BSR products (GH-2069)",
                     "status": "open",
                     "draft": false
                   }
