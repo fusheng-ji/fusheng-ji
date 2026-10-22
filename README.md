@@ -84,7 +84,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
 - **[SGLang](https://github.com/sgl-project/sglang)** · Native diffusion serving and cache lifecycle
 
-  Merged cache resets isolate requests; proposed Ovis-Image serving extends model integration and attention consistency.
+  Merged request-cache resets and FLUX guidance fixes improve diffusion inference correctness; proposed Ovis-Image serving extends model integration and attention consistency.
 
   <details>
 
@@ -97,6 +97,10 @@ Selected engineering contributions span generative model execution, GPU kernels,
   - **Request entry to expert state.** Resetting all DiT caches when a request starts covers experts that never execute denoising step zero, preventing stale TeaCache/Spectrum state across requests.
 
     Per-request DiT reset [#42437](https://github.com/sgl-project/sglang/pull/42437 "[diffusion] Reset DiT cache state at the start of each request") (Merged)
+
+  - **FLUX true CFG.** Uses true\_cfg\_scale for the native FLUX branch-combination weight, preserving existing behavior when it is unset. Unit tests and real FLUX.1-dev comparisons on B200 verify the correction; numerical differences from Diffusers remain.
+
+    FLUX true CFG weight [#44260](https://github.com/sgl-project/sglang/pull/44260 "[Fix] flux: use true_cfg_scale as the FLUX CFG weight") (Merged)
 
   - **Sharded SDPA consistency.** Eligible exact-tier torch-SDPA calls pad query rows so TP/Ulysses head shards select the unsharded attention kernel. B200 operator and two-GPU Ulysses tests report bitwise agreement; whole-model differences remain. The proposal retains the existing lossless-tier and unaffected backend behavior.
 
@@ -182,17 +186,17 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   <summary>Technical details and selected PRs</summary>
 
-  - **MiniMax-H3 conditioning.** These representative stages belong to a larger PR stack: three-modality AdaLN projection, fused RMSNorm/modulation, and sequence-parallel reductions with fixed accumulation order. Reported BF16 tests on 2/4/8 B200 ranks match single-GPU outputs and gradients bitwise in a norm/residual region with seeded sublayer stand-ins. A one-block closeout adds per-node forward/backward drift reporting; 11 of 17 nodes still use interim operators or provider replay. The latest evidence migration preserves historical measurements.
+  - **MiniMax-H3 conditioning and integration.** These representative stages belong to a larger proposed stack spanning conditioning, normalization and sequence-parallel reductions. H100 follow-ups extend validation to real 33B forward/backward execution, rollout/train drift controls, and a 638-tensor checkpoint mapper with a vLLM-Omni adapter for four fused projections. Strict execution is repeatable, while unbound video projections still introduce trajectory drift; zero drift was measured only with those projections diagnostically bound. Adapter validation is limited to TP1, and no speedup is claimed.
 
-    AdaLN projection [#485](https://github.com/RL-Align/RL-Kernel/pull/485 "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/10)") (Open) · Fused norm and modulation [#487](https://github.com/RL-Align/RL-Kernel/pull/487 "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/10)") (Open) · Sequence-parallel reductions [#494](https://github.com/RL-Align/RL-Kernel/pull/494 "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/10)") (Open) · One-block drift validation [#539](https://github.com/RL-Align/RL-Kernel/pull/539 "[WS1][CUDA][MiniMax-H3] ws1_one_h3_block + full-model qualification: block 0 node-by-node and 50-block/generation gates (RFC #420 stack 10/10)") (Open)
+    AdaLN projection [#485](https://github.com/RL-Align/RL-Kernel/pull/485 "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/10)") (Open) · Fused norm and modulation [#487](https://github.com/RL-Align/RL-Kernel/pull/487 "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/10)") (Open) · Sequence-parallel reductions [#494](https://github.com/RL-Align/RL-Kernel/pull/494 "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/10)") (Open) · One-block drift validation [#539](https://github.com/RL-Align/RL-Kernel/pull/539 "[WS1][CUDA][MiniMax-H3] ws1_one_h3_block + full-model qualification: block 0 node-by-node and 50-block/generation gates (RFC #420 stack 10/10)") (Open) · Full-model drift controls [#571](https://github.com/RL-Align/RL-Kernel/pull/571 "[WS1][CUDA][MiniMax-H3] ws1_full_h3_transformer and ws1_dual_trajectory: 33B forward/backward and rollout-vs-train control (RFC #420 stack 5/5)") (Open) · Checkpoint mapping and rollout adapter [#575](https://github.com/RL-Align/RL-Kernel/pull/575 "[WS1][CUDA][MiniMax-H3] checkpoint mapper and the vLLM-Omni rollout adapter (RFC #420 stack 7/7)") (Open)
 
   - **Qwen3-Next normalization.** The stack restores CUDA dispatch, specifies zero-centred normalization, adds gated forward/backward kernels, then defines GDN decode-state goldens. The final stage supplies PyTorch recurrent and convolution state references. Reference and provider checks expose casting and state differences before model integration.
 
     CUDA dispatch [#466](https://github.com/RL-Align/RL-Kernel/pull/466 "[WS1][CUDA][Qwen3-Next] Restore CUDA dispatch for rms_norm (RFC #428 stack 1/4)") (Merged) → Zero-centred RMSNorm [#467](https://github.com/RL-Align/RL-Kernel/pull/467 "[WS1][CUDA][Qwen3-Next] C1: zero-centred RMSNorm references and CUDA kernel (RFC #428 stack 2/4)") (Open) → Gated RMSNorm [#468](https://github.com/RL-Align/RL-Kernel/pull/468 "[WS1][CUDA][Qwen3-Next] Gated RMSNorm CUDA kernel for the GDN block (RFC #428 stack 3/4)") (Open) → Decode-state contracts [#469](https://github.com/RL-Align/RL-Kernel/pull/469 "[WS1][CUDA][Qwen3-Next] C6: GDN decode-step goldens and recurrent/conv state contract (RFC #428 stack 4/4)") (Open)
 
-  - **Qwen3-Next integration and reproducibility.** This dependent stack extends the normalization and state contracts through MoE routing, TP4 mixers, full-model rollout/recompute, batch invariance, and fixed-order distributed logprob. Historical single-node 4 × B200 evidence covers 97 batch-invariance cells and 13 NCCL settings: selected-token logprob and LSE match TP1 on the same logits, while entropy is invariant only at a fixed TP degree. The latest \#549 layout update reproduces archived reports; its fresh GPU validation run is pending.
+  - **Qwen3-Next integration and reproducibility.** The proposed stack connects MoE routing, TP4 model execution, rollout/recompute checks and fixed-order distributed logprobs. Recorded B200 reruns verify 97/97 batch-invariance cells and invariant digests at 17 TP4 points across 13 NCCL settings. Selected-token logprobs and LSE match TP1 on the same logits; entropy remains TP-degree dependent. An EP4 follow-up verifies 16/16 rollout/recompute cases and 97/97 batch-invariance cells. EP4 retains its own numerical profile, and its training and checkpoint-export paths remain disabled.
 
-    MoE route/combine [#503](https://github.com/RL-Align/RL-Kernel/pull/503 "[WS1][CUDA][Qwen3-Next] MoE route/combine contract with a batch-invariant grouped expert GEMM (RFC #428 stack 5/11)") (Open) → TP4 model mixers [#507](https://github.com/RL-Align/RL-Kernel/pull/507 "[WS1][CUDA][Qwen3-Next] TP4 GDN, convolution and D=256 attention mixers on real weights (RFC #428 stack 6/11)") (Open) → Rollout/recompute chain [#543](https://github.com/RL-Align/RL-Kernel/pull/543 "[WS1][CUDA][Qwen3-Next] Full-model chain: vLLM rollout vs VIME recompute, raw-bit through two updates and a reload (RFC #428 stack 7/11)") (Open) → Batch-invariance validation [#544](https://github.com/RL-Align/RL-Kernel/pull/544 "[WS1][CUDA][Qwen3-Next] Batch-invariance matrix for the full model, 97/97 cells bitwise (RFC #428 stack 8/11)") (Open) → Distributed logprob parity [#549](https://github.com/RL-Align/RL-Kernel/pull/549 "[WS1][CUDA][Qwen3-Next] TP distributed logprob parity: fixed reduction order, selected-token logprob exact across NCCL settings (RFC #428 stack 9/11)") (Open)
+    MoE route/combine [#503](https://github.com/RL-Align/RL-Kernel/pull/503 "[WS1][CUDA][Qwen3-Next] MoE route/combine contract with a batch-invariant grouped expert GEMM (RFC #428 stack 5/11)") (Open) → TP4 model mixers [#507](https://github.com/RL-Align/RL-Kernel/pull/507 "[WS1][CUDA][Qwen3-Next] TP4 GDN, convolution and D=256 attention mixers on real weights (RFC #428 stack 6/11)") (Open) → Rollout/recompute chain [#543](https://github.com/RL-Align/RL-Kernel/pull/543 "[WS1][CUDA][Qwen3-Next] Full-model chain: vLLM rollout vs VIME recompute, raw-bit through two updates and a reload (RFC #428 stack 7/11)") (Open) → Batch-invariance validation [#544](https://github.com/RL-Align/RL-Kernel/pull/544 "[WS1][CUDA][Qwen3-Next] Batch-invariance matrix for the full model, 97/97 cells bitwise (RFC #428 stack 8/11)") (Open) → Distributed logprob parity [#549](https://github.com/RL-Align/RL-Kernel/pull/549 "[WS1][CUDA][Qwen3-Next] TP distributed logprob parity: fixed reduction order, selected-token logprob exact across NCCL settings (RFC #428 stack 9/11)") (Open) → Expert-parallel rollout/replay [#557](https://github.com/RL-Align/RL-Kernel/pull/557 "[WS1][CUDA][Qwen3-Next] EP4 distributed logprob parity: expert-parallel MoE, full-model L2 bitwise on TP4 x EP4 (RFC #428 stack 10/11)") (Open)
 
   - **Memory-efficient logp backward.** A fused CUDA backward writes the returned gradient directly, with no extra temporary workspace; older builds retain a bounded chunked fallback. For BF16 logits with 32,768 rows and vocabulary 151,936 on one B200, the PR reports forward/backward peak memory falling from 46.37 to 9.27 GiB and median latency from 57.1 to 27.2 ms versus the previous VJP. The peak still includes the returned gradient.
 
@@ -206,7 +210,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
 - **[FlashAttention](https://github.com/Dao-AILab/flash-attention)** · SM100 attention kernels and validation
 
-  Proposed SM100 attention fixes address backward correctness, cache isolation, and reproducible kernel validation.
+  Merged SM100 forward cache isolation prevents NaN contamination from unused V-cache entries; proposed work addresses backward correctness, scheduling, and reproducible validation.
 
   <details>
 
@@ -218,7 +222,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **Cache-safe forward.** Sequence-bounded nonpaged V loads zero-fill unused cache rows before P@V, preventing 0 × NaN contamination in dense and packed forward. The PR reports B200 correctness and memory-check coverage; valid V NaNs and paged-KV behavior retain their existing contracts.
 
-    Unused V-cache isolation [#2983](https://github.com/Dao-AILab/flash-attention/pull/2983 "[CuTe, Fwd, SM100] Prevent NaN contamination from unused V cache entries") (Open)
+    Unused V-cache isolation [#2983](https://github.com/Dao-AILab/flash-attention/pull/2983 "[CuTe, Fwd, SM100] Prevent NaN contamination from unused V cache entries") (Merged)
 
   - **Scheduling and reproducible validation.** Adapts an existing CLC L2-swizzle implementation while preserving STATIC 2CTA compatibility. A separate dense/varlen benchmark records CUDA Graph timings, source revisions, compiler identity, and kernel hashes. The report credits upstream work for the observed register-spill gains.
 
@@ -264,9 +268,9 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-- **[NVIDIA Warp](https://github.com/NVIDIA/warp)** · Half-precision numerical stability
+- **[NVIDIA Warp](https://github.com/NVIDIA/warp)** · Numerical stability and sparse GPU products
 
-  Draft FP16 SVD and proposed zero-adjoint fixes address distinct forward and backward NaN paths.
+  Draft FP16 SVD and proposed zero-adjoint fixes address forward and backward NaNs; proposed sparse extensions add mixed-precision arithmetic and optional CUDA row packing.
 
   <details>
 
@@ -280,9 +284,13 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
     Zero-adjoint gradient contract [#2064](https://github.com/NVIDIA/warp/pull/2064 "Fix zero-adjoint SVD gradients (GH-2054)") (Open)
 
+  - **Mixed-precision sparse products.** Sparse products keep matrix storage in FP32 while multiplying FP64 vectors, accumulating and scaling in FP64 without allocating a converted matrix. A dependent, optional CUDA row-packing path supports non-transposed products while preserving default dispatch. CPU and B200 correctness checks cover the proposed paths; performance depends on sparse structure, and no end-to-end solver speedup is claimed.
+
+    Mixed-precision sparse arithmetic [#2072](https://github.com/NVIDIA/warp/pull/2072 "Support mixed-precision BSR products (GH-2069)") (Open) → Optional CUDA row packing [#2073](https://github.com/NVIDIA/warp/pull/2073 "Add optional row-packed CUDA BSR products (GH-2069)") (Open)
+
   </details>
 
-<sub>Selected public contributions · PR status verified 2026-10-19.</sub>
+<sub>Selected public contributions · PR status verified 2026-10-22.</sub>
 
 <!-- OPEN-SOURCE:END -->
 
