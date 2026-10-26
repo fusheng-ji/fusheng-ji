@@ -74,11 +74,11 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **Selected PRs.**
 
-    Mixed-length prompt masks [#856](https://github.com/xdit-project/xDiT/pull/856 "fix(sp): honour text masks for batched prompts of different lengths in Z-Image and Qwen-Image") (Open)
+    Mixed-length prompt masks [#856](https://github.com/xdit-project/xDiT/pull/856 "fix(sp): honour prompt padding masks for batched prompts of different lengths") (Open)
 
   - **Cache layout and execution ownership.** Draft changes align PipeFusion warmup and patch-mode KV layouts, exclude Ideogram padding, and pad/unpad uneven HunyuanVideo shards. A separate runner fix assigns prompt splitting, output gathering, and parallel VAE ownership to one layer each, preventing double processing and missing outputs. These are independent execution contracts, with draft paths still under review.
 
-    Patch-major KV cache [#899](https://github.com/xdit-project/xDiT/pull/899 "fix(cache): store the Ulysses PipeFusion KV cache patch-major") (Draft) · Ideogram attention bounds [#900](https://github.com/xdit-project/xDiT/pull/900 "fix(ideogram4): keep sequence-parallel padding out of attention") (Draft) · HunyuanVideo shard boundaries [#901](https://github.com/xdit-project/xDiT/pull/901 "fix(hunyuan-video): pad sequence-parallel shards when tokens do not divide evenly") (Draft) · Runner and wrapper ownership [#902](https://github.com/xdit-project/xDiT/pull/902 "fix(runner): let one layer own DP, output rank and parallel VAE for legacy pipelines") (Open)
+    Patch-major KV cache [#899](https://github.com/xdit-project/xDiT/pull/899 "fix(cache): store the Ulysses PipeFusion KV cache patch-major") (Draft) · Ideogram attention bounds [#900](https://github.com/xdit-project/xDiT/pull/900 "fix(ideogram4): keep sequence-parallel padding out of attention") (Draft) · HunyuanVideo shard boundaries [#901](https://github.com/xdit-project/xDiT/pull/901 "fix(hunyuan-video): pad sequence-parallel shards when tokens do not divide evenly") (Draft) · Runner and wrapper ownership [#902](https://github.com/xdit-project/xDiT/pull/902 "fix(runner): let one layer own DP, output rank and parallel VAE for legacy pipelines") (Merged)
 
   </details>
 
@@ -178,17 +178,15 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-- **[RL-Kernel](https://github.com/RL-Align/RL-Kernel)** · Model operators and numerical contracts
-
-  Merged CUDA dispatch fixes and proposed kernels target numerical correctness, distributed reproducibility, and logprob efficiency.
+- **[RL-Kernel](https://github.com/RL-Align/RL-Kernel)**
 
   <details>
 
   <summary>Technical details and selected PRs</summary>
 
-  - **MiniMax-H3 conditioning and integration.** These representative stages belong to a larger proposed stack spanning conditioning, normalization and sequence-parallel reductions. H100 follow-ups extend validation to real 33B forward/backward execution, rollout/train drift controls, and a 638-tensor checkpoint mapper with a vLLM-Omni adapter for four fused projections. Strict execution is repeatable, while unbound video projections still introduce trajectory drift; zero drift was measured only with those projections diagnostically bound. Adapter validation is limited to TP1, and no speedup is claimed.
+  - **Selected PRs.**
 
-    AdaLN projection [#485](https://github.com/RL-Align/RL-Kernel/pull/485 "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/10)") (Open) · Fused norm and modulation [#487](https://github.com/RL-Align/RL-Kernel/pull/487 "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/10)") (Open) · Sequence-parallel reductions [#494](https://github.com/RL-Align/RL-Kernel/pull/494 "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/10)") (Open) · One-block drift validation [#539](https://github.com/RL-Align/RL-Kernel/pull/539 "[WS1][CUDA][MiniMax-H3] ws1_one_h3_block + full-model qualification: block 0 node-by-node and 50-block/generation gates (RFC #420 stack 10/10)") (Open) · Full-model drift controls [#571](https://github.com/RL-Align/RL-Kernel/pull/571 "[WS1][CUDA][MiniMax-H3] ws1_full_h3_transformer and ws1_dual_trajectory: 33B forward/backward and rollout-vs-train control (RFC #420 stack 5/5)") (Open) · Checkpoint mapping and rollout adapter [#575](https://github.com/RL-Align/RL-Kernel/pull/575 "[WS1][CUDA][MiniMax-H3] checkpoint mapper and the vLLM-Omni rollout adapter (RFC #420 stack 7/7)") (Open)
+    AdaLN projection [#485](https://github.com/RL-Align/RL-Kernel/pull/485 "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/10)") (Open) · Fused norm and modulation [#487](https://github.com/RL-Align/RL-Kernel/pull/487 "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/10)") (Open) · Sequence-parallel reductions [#494](https://github.com/RL-Align/RL-Kernel/pull/494 "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/10)") (Open) · Full-model drift controls [#571](https://github.com/RL-Align/RL-Kernel/pull/571 "[WS1][CUDA][MiniMax-H3] ws1_full_h3_transformer and ws1_dual_trajectory: 33B forward/backward and rollout-vs-train control (RFC #420 stack 5/5)") (Open) · Checkpoint mapping and rollout adapter [#575](https://github.com/RL-Align/RL-Kernel/pull/575 "[WS1][CUDA][MiniMax-H3] checkpoint mapper and the vLLM-Omni rollout adapter (RFC #420 stack 7/7)") (Open)
 
   - **Qwen3-Next normalization.** The stack restores CUDA dispatch, specifies zero-centred normalization, adds gated forward/backward kernels, then defines GDN decode-state goldens. The final stage supplies PyTorch recurrent and convolution state references. Reference and provider checks expose casting and state differences before model integration.
 
@@ -290,7 +288,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-<sub>Selected public contributions · PR status verified 2026-10-22.</sub>
+<sub>Selected public contributions · PR status verified 2026-10-26.</sub>
 
 <!-- OPEN-SOURCE:END -->
 

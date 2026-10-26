@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "verified_on": "2026-10-22",
+  "verified_on": "2026-10-26",
   "data": {
     "username": "fusheng-ji",
     "introduction": "Selected engineering contributions span generative model execution, GPU kernels, and differentiable rendering. Each repository is an independent project.",
@@ -104,7 +104,7 @@
                     "repo": "xdit-project/xDiT",
                     "number": 856,
                     "url": "https://github.com/xdit-project/xDiT/pull/856",
-                    "title": "fix(sp): honour text masks for batched prompts of different lengths in Z-Image and Qwen-Image",
+                    "title": "fix(sp): honour prompt padding masks for batched prompts of different lengths",
                     "status": "open",
                     "draft": false
                   }
@@ -164,7 +164,7 @@
                     "number": 902,
                     "url": "https://github.com/xdit-project/xDiT/pull/902",
                     "title": "fix(runner): let one layer own DP, output rank and parallel VAE for legacy pipelines",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -563,7 +563,7 @@
                     "number": 539,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/539",
                     "title": "[WS1][CUDA][MiniMax-H3] ws1_one_h3_block + full-model qualification: block 0 node-by-node and 50-block/generation gates (RFC #420 stack 10/10)",
-                    "status": "open",
+                    "status": "closed",
                     "draft": false
                   }
                 ]
