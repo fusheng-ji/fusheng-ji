@@ -11,10 +11,10 @@
 - `scripts/update_contributions.py`
 - `.github/workflows/update-contributions.yml`
 - `assets/contributions-data.json`
-- `assets/navigation/` 整个目录，包含七个导航图标的深浅色版本（14 个静态 SVG）和透明间隔图 `spacer.svg`
+- `assets/navigation/` 整个目录，包含七个 `*-blue.svg` 导航图标、透明间隔图 `spacer.svg` 和兼容旧链接的深浅色 SVG
 - `tests/test_update_contributions.py`（可选），用于本地验证更新器
 
-导航图标的深浅色版本统一使用蓝色 `#2f81f7`，背景透明；主页和 Blog 使用蓝色描边，其余图标使用蓝色填充，X 图标的内部填充也一并处理。README 保留 `<picture>` / `<source>` 和现有资源路径，图片地址附加 `?v=blue-20261029` 版本参数，避免继续使用旧配色缓存；无论选中哪个版本，均可在浅色和暗色背景上看到蓝色图形。图标统一显示为 30 × 30px，六个透明间隔均为 7px；整组宽 252px，兼顾桌面与 320px、375px 手机页面的单行显示。README 不依赖自定义 CSS；这些静态资源不由开源贡献更新器改写。
+导航图标统一使用蓝色 `#2f81f7`，背景透明；主页和 Blog 使用蓝色描边，其余图标使用蓝色填充，X 图标的内部填充也一并处理。README 的 `<picture>`、深浅色 `<source>` 和回退图片均指向同一套 `*-blue.svg`；新的文件名避免 GitHub 重定向后继续复用旧图片缓存。旧的深浅色文件也已改为相同蓝色，保留以兼容既有链接。图标统一显示为 30 × 30px，六个透明间隔均为 7px；整组宽 252px，兼顾桌面与 320px、375px 手机页面的单行显示。README 不依赖自定义 CSS；这些静态资源不由开源贡献更新器改写。
 
 `UPDATER.md` 可一并保留；本地 `preview.html` 不需要上传。更新器只替换 README 中下面两个标记之间的内容，请各保留一次：
 
