@@ -11,10 +11,10 @@
 - `scripts/update_contributions.py`
 - `.github/workflows/update-contributions.yml`
 - `assets/contributions-data.json`
-- `assets/navigation/` 整个目录，包含七个 `*-blue.svg` 导航图标、响应式透明间隔图 `spacer-narrow.svg` / `spacer-wide.svg` 和兼容旧链接的 SVG
+- `assets/navigation/` 整个目录，包含七个 `*-blue.svg` 导航图标、响应式透明间隔图 `spacer-narrow.svg` / `spacer-wide.svg` / `spacer-desktop.svg` 和兼容旧链接的 SVG
 - `tests/test_update_contributions.py`（可选），用于本地验证更新器
 
-导航图标统一使用蓝色 `#2f81f7`，背景透明；主页和 Blog 使用蓝色描边，其余图标使用蓝色填充，X 图标的内部填充也一并处理。README 的深浅色 `<source>` 和回退图片均指向同一套 `*-blue.svg`，旧文件保留以兼容既有链接。图标统一显示为 30 × 30px，六个间隔默认各 12px，整组宽 282px；359px 及以下视口通过 `<picture>` 选用 7px 间隔，整组宽 252px，保持窄屏单行。间隔图片只固定高度，由所选 SVG 的固有宽度决定间距；外层无 href 的锚点防止透明间隔被自动转换为可点击的图片链接。README 不依赖自定义 CSS；这些静态资源不由开源贡献更新器改写。
+导航图标统一使用蓝色 `#2f81f7`，背景透明，显示为 30 × 30px。桌面端（768px 及以上）使用 28.2px 间隔，总宽约 379.2px，与当前 GitHub 16px 关键词行对齐；360–767px 仍使用 12px 间隔，总宽 282px；359px 及以下仍使用 7px 间隔，总宽 252px，保持手机单行布局。README 的 `<picture>` 根据视口选择间隔 SVG；间隔图片只固定高度，由 SVG 固有宽度决定间距。外层无 href 的锚点防止透明间隔被自动转换为可点击的图片链接。图标深浅色来源均为同一套 `*-blue.svg`，旧文件保留兼容。README 不依赖自定义 CSS；这些静态资源不由开源贡献更新器改写。
 
 `UPDATER.md` 可一并保留；本地 `preview.html` 不需要上传。更新器只替换 README 中下面两个标记之间的内容，请各保留一次：
 
