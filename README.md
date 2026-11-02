@@ -174,7 +174,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **GB10 / SM121 QAT.** Padding-aware NVFP4 scales and SM121 split-path routing underpin forward-consistent dV. The proposed backward reconstructs forward quantization statistics; its training-gradient contract remains under evaluation.
 
-    Quantization and routing prerequisites ([#1933](https://github.com/hao-ai-lab/FastVideo/pull/1933 "[bugfix] NVFP4 fake-quant: mask padding lanes and guard zero-scale groups") (Open) + [#1934](https://github.com/hao-ai-lab/FastVideo/pull/1934 "[bugfix] Keep the split P@V path for Attn-QAT training on GB10 (SM121)") (Open)) → Forward-consistent dV [#1938](https://github.com/hao-ai-lab/FastVideo/pull/1938 "[kernel] GB10: forward-consistent dV for Attn-QAT training") (Open)
+    Quantization and routing prerequisites ([#1933](https://github.com/hao-ai-lab/FastVideo/pull/1933 "[bugfix] NVFP4 fake-quant: mask padding lanes and guard zero-scale groups") (Open) + [#1934](https://github.com/hao-ai-lab/FastVideo/pull/1934 "[bugfix] Keep the split P@V path for Attn-QAT training on GB10 (SM121)") (Open)) → Forward-consistent dV [#1938](https://github.com/hao-ai-lab/FastVideo/pull/1938 "[kernel] GB10: forward-consistent dV for Attn-QAT training") (Draft)
 
   </details>
 
@@ -186,11 +186,11 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **Selected PRs.**
 
-    AdaLN projection [#485](https://github.com/RL-Align/RL-Kernel/pull/485 "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/10)") (Open) · Fused norm and modulation [#487](https://github.com/RL-Align/RL-Kernel/pull/487 "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/10)") (Open) · Sequence-parallel reductions [#494](https://github.com/RL-Align/RL-Kernel/pull/494 "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/10)") (Open) · Full-model drift controls [#571](https://github.com/RL-Align/RL-Kernel/pull/571 "[WS1][CUDA][MiniMax-H3] ws1_full_h3_transformer and ws1_dual_trajectory: 33B forward/backward and rollout-vs-train control (RFC #420 stack 5/5)") (Open) · Checkpoint mapping and rollout adapter [#575](https://github.com/RL-Align/RL-Kernel/pull/575 "[WS1][CUDA][MiniMax-H3] checkpoint mapper and the vLLM-Omni rollout adapter (RFC #420 stack 7/7)") (Open)
+    AdaLN projection [#485](https://github.com/RL-Align/RL-Kernel/pull/485 "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/10)") (Merged) · Fused norm and modulation [#487](https://github.com/RL-Align/RL-Kernel/pull/487 "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/10)") (Merged) · Sequence-parallel reductions [#494](https://github.com/RL-Align/RL-Kernel/pull/494 "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/10)") (Merged) · Full-model drift controls [#571](https://github.com/RL-Align/RL-Kernel/pull/571 "[WS1][CUDA][MiniMax-H3] ws1_full_h3_transformer and ws1_dual_trajectory: 33B forward/backward and rollout-vs-train control (RFC #420 stack 5/7)") (Open) · Checkpoint mapping and rollout adapter [#575](https://github.com/RL-Align/RL-Kernel/pull/575 "[WS1][CUDA][MiniMax-H3] checkpoint mapper and the vLLM-Omni rollout adapter (RFC #420 stack 7/7)") (Open)
 
   - **Qwen3-Next normalization.** The stack restores CUDA dispatch, specifies zero-centred normalization, adds gated forward/backward kernels, then defines GDN decode-state goldens. The final stage supplies PyTorch recurrent and convolution state references. Reference and provider checks expose casting and state differences before model integration.
 
-    CUDA dispatch [#466](https://github.com/RL-Align/RL-Kernel/pull/466 "[WS1][CUDA][Qwen3-Next] Restore CUDA dispatch for rms_norm (RFC #428 stack 1/4)") (Merged) → Zero-centred RMSNorm [#467](https://github.com/RL-Align/RL-Kernel/pull/467 "[WS1][CUDA][Qwen3-Next] C1: zero-centred RMSNorm references and CUDA kernel (RFC #428 stack 2/4)") (Open) → Gated RMSNorm [#468](https://github.com/RL-Align/RL-Kernel/pull/468 "[WS1][CUDA][Qwen3-Next] Gated RMSNorm CUDA kernel for the GDN block (RFC #428 stack 3/4)") (Open) → Decode-state contracts [#469](https://github.com/RL-Align/RL-Kernel/pull/469 "[WS1][CUDA][Qwen3-Next] C6: GDN decode-step goldens and recurrent/conv state contract (RFC #428 stack 4/4)") (Open)
+    CUDA dispatch [#466](https://github.com/RL-Align/RL-Kernel/pull/466 "[WS1][CUDA][Qwen3-Next] Restore CUDA dispatch for rms_norm (RFC #428 stack 1/4)") (Merged) → Zero-centred RMSNorm [#467](https://github.com/RL-Align/RL-Kernel/pull/467 "[WS1][CUDA][Qwen3-Next] C1: zero-centred RMSNorm references and CUDA kernel (RFC #428 stack 2/4)") (Merged) → Gated RMSNorm [#468](https://github.com/RL-Align/RL-Kernel/pull/468 "[WS1][CUDA][Qwen3-Next] Gated RMSNorm CUDA kernel for the GDN block (RFC #428 stack 3/4)") (Merged) → Decode-state contracts [#469](https://github.com/RL-Align/RL-Kernel/pull/469 "[WS1][CUDA][Qwen3-Next] C6: GDN decode-step goldens and recurrent/conv state contract (RFC #428 stack 4/4)") (Merged)
 
   - **Qwen3-Next integration and reproducibility.** The proposed stack connects MoE routing, TP4 model execution, rollout/recompute checks and fixed-order distributed logprobs. Recorded B200 reruns verify 97/97 batch-invariance cells and invariant digests at 17 TP4 points across 13 NCCL settings. Selected-token logprobs and LSE match TP1 on the same logits; entropy remains TP-degree dependent. An EP4 follow-up verifies 16/16 rollout/recompute cases and 97/97 batch-invariance cells. EP4 retains its own numerical profile, and its training and checkpoint-export paths remain disabled.
 
@@ -288,7 +288,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-<sub>Selected public contributions · PR status verified 2026-10-26.</sub>
+<sub>Selected public contributions · PR status verified 2026-11-02.</sub>
 
 <!-- OPEN-SOURCE:END -->
 

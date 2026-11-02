@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "verified_on": "2026-10-26",
+  "verified_on": "2026-11-02",
   "data": {
     "username": "fusheng-ji",
     "introduction": "Selected engineering contributions span generative model execution, GPU kernels, and differentiable rendering. Each repository is an independent project.",
@@ -494,8 +494,8 @@
                     "number": 1938,
                     "url": "https://github.com/hao-ai-lab/FastVideo/pull/1938",
                     "title": "[kernel] GB10: forward-consistent dV for Attn-QAT training",
-                    "status": "open",
-                    "draft": false
+                    "status": "draft",
+                    "draft": true
                   }
                 ]
               }
@@ -524,7 +524,7 @@
                     "number": 485,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/485",
                     "title": "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/10)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -537,7 +537,7 @@
                     "number": 487,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/487",
                     "title": "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/10)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -550,7 +550,7 @@
                     "number": 494,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/494",
                     "title": "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/10)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -575,7 +575,7 @@
                     "repo": "RL-Align/RL-Kernel",
                     "number": 571,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/571",
-                    "title": "[WS1][CUDA][MiniMax-H3] ws1_full_h3_transformer and ws1_dual_trajectory: 33B forward/backward and rollout-vs-train control (RFC #420 stack 5/5)",
+                    "title": "[WS1][CUDA][MiniMax-H3] ws1_full_h3_transformer and ws1_dual_trajectory: 33B forward/backward and rollout-vs-train control (RFC #420 stack 5/7)",
                     "status": "open",
                     "draft": false
                   }
@@ -622,7 +622,7 @@
                     "number": 467,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/467",
                     "title": "[WS1][CUDA][Qwen3-Next] C1: zero-centred RMSNorm references and CUDA kernel (RFC #428 stack 2/4)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -635,7 +635,7 @@
                     "number": 468,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/468",
                     "title": "[WS1][CUDA][Qwen3-Next] Gated RMSNorm CUDA kernel for the GDN block (RFC #428 stack 3/4)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -648,7 +648,7 @@
                     "number": 469,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/469",
                     "title": "[WS1][CUDA][Qwen3-Next] C6: GDN decode-step goldens and recurrent/conv state contract (RFC #428 stack 4/4)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
