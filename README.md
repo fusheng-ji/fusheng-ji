@@ -297,3 +297,12 @@ Selected engineering contributions span generative model execution, GPU kernels,
 [rl-kernel-rmsnorm]: https://github.com/RL-Align/RL-Kernel/pull/466
 [sglang-cache]: https://github.com/sgl-project/sglang/pull/42437
 [vllm-error]: https://github.com/vllm-project/vllm-omni/pull/8474
+
+<p align="center">
+  <a href="https://ghfind.com/u/fusheng-ji?ref=badge">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://ghfind.com/api/card/mini/fusheng-ji?theme=dark" />
+      <img src="https://ghfind.com/api/card/mini/fusheng-ji?theme=light" alt="GitHub Roast 评分卡" width="440" />
+    </picture>
+  </a>
+</p>

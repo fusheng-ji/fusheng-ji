@@ -103,3 +103,7 @@ python3 -m unittest discover -s tests -v
 - [定时工作流与 60 天限制](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)
 - [默认 GITHUB_TOKEN](https://docs.github.com/en/actions/concepts/security/github_token)
 - [已固定的官方 checkout v7.0.1](https://github.com/actions/checkout/commit/3d3c42e5aac5ba805825da76410c181273ba90b1)
+
+## 页尾卡片
+
+README 最后居中放置 [ghfind 账户卡片](https://ghfind.com/u/fusheng-ji?ref=badge)，显示宽度 440px，通过 `<picture>` 切换深浅色 SVG。卡片为第三方外链，位于贡献区标记之外，贡献更新器不会改写；无需新增 Actions 或本地图片。
