@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "verified_on": "2026-11-02",
+  "verified_on": "2026-11-09",
   "data": {
     "username": "fusheng-ji",
     "introduction": "Selected engineering contributions span generative model execution, GPU kernels, and differentiable rendering. Each repository is an independent project.",
@@ -576,7 +576,7 @@
                     "number": 571,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/571",
                     "title": "[WS1][CUDA][MiniMax-H3] ws1_full_h3_transformer and ws1_dual_trajectory: 33B forward/backward and rollout-vs-train control (RFC #420 stack 5/7)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -589,7 +589,7 @@
                     "number": 575,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/575",
                     "title": "[WS1][CUDA][MiniMax-H3] checkpoint mapper and the vLLM-Omni rollout adapter (RFC #420 stack 7/7)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]

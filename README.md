@@ -186,7 +186,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **Selected PRs.**
 
-    AdaLN projection [#485](https://github.com/RL-Align/RL-Kernel/pull/485 "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/10)") (Merged) · Fused norm and modulation [#487](https://github.com/RL-Align/RL-Kernel/pull/487 "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/10)") (Merged) · Sequence-parallel reductions [#494](https://github.com/RL-Align/RL-Kernel/pull/494 "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/10)") (Merged) · Full-model drift controls [#571](https://github.com/RL-Align/RL-Kernel/pull/571 "[WS1][CUDA][MiniMax-H3] ws1_full_h3_transformer and ws1_dual_trajectory: 33B forward/backward and rollout-vs-train control (RFC #420 stack 5/7)") (Open) · Checkpoint mapping and rollout adapter [#575](https://github.com/RL-Align/RL-Kernel/pull/575 "[WS1][CUDA][MiniMax-H3] checkpoint mapper and the vLLM-Omni rollout adapter (RFC #420 stack 7/7)") (Open)
+    AdaLN projection [#485](https://github.com/RL-Align/RL-Kernel/pull/485 "[WS1][CUDA][MiniMax-H3] adaln_projection_3mod: three-modality AdaLN projection (RFC #420 stack 3/10)") (Merged) · Fused norm and modulation [#487](https://github.com/RL-Align/RL-Kernel/pull/487 "[WS1][CUDA][MiniMax-H3] h3_rmsnorm: RMSNorm with fused AdaLN modulation (RFC #420 stack 5/10)") (Merged) · Sequence-parallel reductions [#494](https://github.com/RL-Align/RL-Kernel/pull/494 "[WS2][CUDA][MiniMax-H3] sp_norm_adaln: sequence-parallel norm/AdaLN/gated residual, byte-equal to WS1 (RFC #420 stack 9/10)") (Merged) · Full-model drift controls [#571](https://github.com/RL-Align/RL-Kernel/pull/571 "[WS1][CUDA][MiniMax-H3] ws1_full_h3_transformer and ws1_dual_trajectory: 33B forward/backward and rollout-vs-train control (RFC #420 stack 5/7)") (Merged) · Checkpoint mapping and rollout adapter [#575](https://github.com/RL-Align/RL-Kernel/pull/575 "[WS1][CUDA][MiniMax-H3] checkpoint mapper and the vLLM-Omni rollout adapter (RFC #420 stack 7/7)") (Merged)
 
   - **Qwen3-Next normalization.** The stack restores CUDA dispatch, specifies zero-centred normalization, adds gated forward/backward kernels, then defines GDN decode-state goldens. The final stage supplies PyTorch recurrent and convolution state references. Reference and provider checks expose casting and state differences before model integration.
 
@@ -288,7 +288,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-<sub>Selected public contributions · PR status verified 2026-11-02.</sub>
+<sub>Selected public contributions · PR status verified 2026-11-09.</sub>
 
 <!-- OPEN-SOURCE:END -->
 
