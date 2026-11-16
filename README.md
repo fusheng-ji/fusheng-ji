@@ -248,9 +248,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-- **[PyTorch3D](https://github.com/facebookresearch/pytorch3d)** · Camera visibility and bounded box overlap
-
-  Proposed visibility and bounded box-clipping fixes prevent invalid feature sampling and CUDA buffer overflow.
+- **[PyTorch3D](https://github.com/facebookresearch/pytorch3d)**
 
   <details>
 
@@ -259,10 +257,6 @@ Selected engineering contributions span generative model execution, GPU kernels,
   - **Visibility contract.** World-to-view depth rejects points behind a camera, preventing invalid projections from contributing sampled features and gradients.
 
     Camera visibility [#2056](https://github.com/facebookresearch/pytorch3d/pull/2056 "Exclude points behind cameras from view sampling") (Open)
-
-  - **Bounded box clipping.** A bounded CUDA workspace first prevents triangle-buffer overflow. Polygon clipping then bounds each clipped triangle to nine vertices, removes that workspace, and aligns CPU/CUDA treatment of coincident faces. On one B200, the PR reports 100 × 100 box pairs dropping from 1.315 to 0.675 ms versus valid upstream controls, using the median of 31 CUDA-event samples; the 22-test box-IoU module passes.
-
-    CUDA capacity bounds [#2059](https://github.com/facebookresearch/pytorch3d/pull/2059 "Fix CUDA box IoU triangle buffer capacity") (Open) → Bounded polygon clipping [#2060](https://github.com/facebookresearch/pytorch3d/pull/2060 "Clip box triangles as polygons in box3d_overlap") (Open)
 
   </details>
 
@@ -288,7 +282,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-<sub>Selected public contributions · PR status verified 2026-11-09.</sub>
+<sub>Selected public contributions · PR status verified 2026-11-16.</sub>
 
 <!-- OPEN-SOURCE:END -->
 

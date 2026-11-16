@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "verified_on": "2026-11-09",
+  "verified_on": "2026-11-16",
   "data": {
     "username": "fusheng-ji",
     "introduction": "Selected engineering contributions span generative model execution, GPU kernels, and differentiable rendering. Each repository is an independent project.",
@@ -982,7 +982,7 @@
                     "number": 2059,
                     "url": "https://github.com/facebookresearch/pytorch3d/pull/2059",
                     "title": "Fix CUDA box IoU triangle buffer capacity",
-                    "status": "open",
+                    "status": "closed",
                     "draft": false
                   }
                 ]
@@ -995,7 +995,7 @@
                     "number": 2060,
                     "url": "https://github.com/facebookresearch/pytorch3d/pull/2060",
                     "title": "Clip box triangles as polygons in box3d_overlap",
-                    "status": "open",
+                    "status": "closed",
                     "draft": false
                   }
                 ]
