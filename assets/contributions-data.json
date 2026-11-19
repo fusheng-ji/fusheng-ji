@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "verified_on": "2026-11-16",
+  "verified_on": "2026-11-19",
   "data": {
     "username": "fusheng-ji",
     "introduction": "Selected engineering contributions span generative model execution, GPU kernels, and differentiable rendering. Each repository is an independent project.",
@@ -410,7 +410,7 @@
                     "number": 14948,
                     "url": "https://github.com/huggingface/diffusers/pull/14948",
                     "title": "Fix missing cache contexts in Wan video-to-video",
-                    "status": "open",
+                    "status": "closed",
                     "draft": false
                   }
                 ]
@@ -496,6 +496,26 @@
                     "title": "[kernel] GB10: forward-consistent dV for Attn-QAT training",
                     "status": "draft",
                     "draft": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Training memory reclamation",
+            "kind": "independent",
+            "analysis": "Collecting layer–parameter reference cycles after negative-prompt encoding released 21.16 GiB of allocated memory on DGX Spark in a Wan2.1-T2V-1.3B training run.",
+            "steps": [
+              {
+                "label": "Release the negative-prompt encoder",
+                "prs": [
+                  {
+                    "repo": "hao-ai-lab/FastVideo",
+                    "number": 2058,
+                    "url": "https://github.com/hao-ai-lab/FastVideo/pull/2058",
+                    "title": "[perf] Free the negative-prompt text encoder right after encoding",
+                    "status": "merged",
+                    "draft": false
                   }
                 ]
               }
@@ -658,7 +678,7 @@
           {
             "title": "Qwen3-Next integration and reproducibility",
             "kind": "dependency",
-            "analysis": "The proposed stack connects MoE routing, TP4 model execution, rollout/recompute checks and fixed-order distributed logprobs. Recorded B200 reruns verify 97/97 batch-invariance cells and invariant digests at 17 TP4 points across 13 NCCL settings. Selected-token logprobs and LSE match TP1 on the same logits; entropy remains TP-degree dependent. An EP4 follow-up verifies 16/16 rollout/recompute cases and 97/97 batch-invariance cells. EP4 retains its own numerical profile, and its training and checkpoint-export paths remain disabled.",
+            "analysis": "The merged stack connects MoE routing, TP4 model execution, rollout/recompute checks and fixed-order distributed logprobs. Recorded B200 reruns verify 97/97 batch-invariance cells and invariant digests at 17 TP4 points across 13 NCCL settings. Selected-token logprobs and LSE match TP1 on the same logits; entropy remains TP-degree dependent. An EP4 follow-up verifies 16/16 rollout/recompute cases and 97/97 batch-invariance cells. EP4 retains its own numerical profile, and its training and checkpoint-export paths remain disabled.",
             "steps": [
               {
                 "label": "MoE route/combine",
@@ -668,7 +688,7 @@
                     "number": 503,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/503",
                     "title": "[WS1][CUDA][Qwen3-Next] MoE route/combine contract with a batch-invariant grouped expert GEMM (RFC #428 stack 5/11)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -681,7 +701,7 @@
                     "number": 507,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/507",
                     "title": "[WS1][CUDA][Qwen3-Next] TP4 GDN, convolution and D=256 attention mixers on real weights (RFC #428 stack 6/11)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -694,7 +714,7 @@
                     "number": 543,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/543",
                     "title": "[WS1][CUDA][Qwen3-Next] Full-model chain: vLLM rollout vs VIME recompute, raw-bit through two updates and a reload (RFC #428 stack 7/11)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -707,7 +727,7 @@
                     "number": 544,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/544",
                     "title": "[WS1][CUDA][Qwen3-Next] Batch-invariance matrix for the full model, 97/97 cells bitwise (RFC #428 stack 8/11)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -720,7 +740,7 @@
                     "number": 549,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/549",
                     "title": "[WS1][CUDA][Qwen3-Next] TP distributed logprob parity: fixed reduction order, selected-token logprob exact across NCCL settings (RFC #428 stack 9/11)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -733,7 +753,7 @@
                     "number": 557,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/557",
                     "title": "[WS1][CUDA][Qwen3-Next] EP4 distributed logprob parity: expert-parallel MoE, full-model L2 bitwise on TP4 x EP4 (RFC #428 stack 10/11)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -774,6 +794,26 @@
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/547",
                     "title": "feat(cuda): enable recursive deterministic LogP autograd on B200",
                     "status": "open",
+                    "draft": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Distributed training with ring context parallelism",
+            "kind": "independent",
+            "analysis": "A 50-block MiniMax-H3 forward/backward step on two four-H100 nodes matched the single-GPU reference for 350 sharded projection gradients. Unsharded parameters were frozen during validation.",
+            "steps": [
+              {
+                "label": "MiniMax-H3 ring context parallelism",
+                "prs": [
+                  {
+                    "repo": "RL-Align/RL-Kernel",
+                    "number": 701,
+                    "url": "https://github.com/RL-Align/RL-Kernel/pull/701",
+                    "title": "[WS2][CUDA][MiniMax-H3] ws2 full model: ring context parallel, CP weight gradients and the 50-block H3 on TP x CP x SP, bitwise against the single-GPU run (RFC #420 follow-up 3/3)",
+                    "status": "merged",
                     "draft": false
                   }
                 ]

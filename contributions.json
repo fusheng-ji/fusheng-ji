@@ -316,6 +316,19 @@
               ]
             }
           ]
+        },
+        {
+          "title": "Training memory reclamation",
+          "kind": "independent",
+          "analysis": "Collecting layer–parameter reference cycles after negative-prompt encoding released 21.16 GiB of allocated memory on DGX Spark in a Wan2.1-T2V-1.3B training run.",
+          "steps": [
+            {
+              "label": "Release the negative-prompt encoder",
+              "prs": [
+                "https://github.com/hao-ai-lab/FastVideo/pull/2058"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -404,7 +417,7 @@
         {
           "title": "Qwen3-Next integration and reproducibility",
           "kind": "dependency",
-          "analysis": "The proposed stack connects MoE routing, TP4 model execution, rollout/recompute checks and fixed-order distributed logprobs. Recorded B200 reruns verify 97/97 batch-invariance cells and invariant digests at 17 TP4 points across 13 NCCL settings. Selected-token logprobs and LSE match TP1 on the same logits; entropy remains TP-degree dependent. An EP4 follow-up verifies 16/16 rollout/recompute cases and 97/97 batch-invariance cells. EP4 retains its own numerical profile, and its training and checkpoint-export paths remain disabled.",
+          "analysis": "The merged stack connects MoE routing, TP4 model execution, rollout/recompute checks and fixed-order distributed logprobs. Recorded B200 reruns verify 97/97 batch-invariance cells and invariant digests at 17 TP4 points across 13 NCCL settings. Selected-token logprobs and LSE match TP1 on the same logits; entropy remains TP-degree dependent. An EP4 follow-up verifies 16/16 rollout/recompute cases and 97/97 batch-invariance cells. EP4 retains its own numerical profile, and its training and checkpoint-export paths remain disabled.",
           "steps": [
             {
               "label": "MoE route/combine",
@@ -466,6 +479,19 @@
               "label": "Recursive LogP autograd",
               "prs": [
                 "https://github.com/RL-Align/RL-Kernel/pull/547"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Distributed training with ring context parallelism",
+          "kind": "independent",
+          "analysis": "A 50-block MiniMax-H3 forward/backward step on two four-H100 nodes matched the single-GPU reference for 350 sharded projection gradients. Unsharded parameters were frozen during validation.",
+          "steps": [
+            {
+              "label": "MiniMax-H3 ring context parallelism",
+              "prs": [
+                "https://github.com/RL-Align/RL-Kernel/pull/701"
               ]
             }
           ]

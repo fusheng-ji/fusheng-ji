@@ -144,20 +144,6 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-- **[Diffusers](https://github.com/huggingface/diffusers)** · Branch-aware video cache integration
-
-  Proposed Wan cache isolation keeps conditional and unconditional guidance branches separate.
-
-  <details>
-
-  <summary>Technical details and selected PRs</summary>
-
-  - **Conditional and unconditional contexts.** Conditional and unconditional calls receive separate cache contexts, preserving classifier-free guidance branch isolation and enabling cached execution in the Wan pipeline.
-
-    Wan V2V cache contexts [#14948](https://github.com/huggingface/diffusers/pull/14948 "Fix missing cache contexts in Wan video-to-video") (Open)
-
-  </details>
-
 ### GPU Training &amp; Inference
 
 - **[FastVideo](https://github.com/hao-ai-lab/FastVideo)** · Hardware-aware video inference and training
@@ -176,6 +162,10 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
     Quantization and routing prerequisites ([#1933](https://github.com/hao-ai-lab/FastVideo/pull/1933 "[bugfix] NVFP4 fake-quant: mask padding lanes and guard zero-scale groups") (Open) + [#1934](https://github.com/hao-ai-lab/FastVideo/pull/1934 "[bugfix] Keep the split P@V path for Attn-QAT training on GB10 (SM121)") (Open)) → Forward-consistent dV [#1938](https://github.com/hao-ai-lab/FastVideo/pull/1938 "[kernel] GB10: forward-consistent dV for Attn-QAT training") (Draft)
 
+  - **Training memory reclamation.** Collecting layer–parameter reference cycles after negative-prompt encoding released 21.16 GiB of allocated memory on DGX Spark in a Wan2.1-T2V-1.3B training run.
+
+    Release the negative-prompt encoder [#2058](https://github.com/hao-ai-lab/FastVideo/pull/2058 "[perf] Free the negative-prompt text encoder right after encoding") (Merged)
+
   </details>
 
 - **[RL-Kernel](https://github.com/RL-Align/RL-Kernel)**
@@ -192,9 +182,9 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
     CUDA dispatch [#466](https://github.com/RL-Align/RL-Kernel/pull/466 "[WS1][CUDA][Qwen3-Next] Restore CUDA dispatch for rms_norm (RFC #428 stack 1/4)") (Merged) → Zero-centred RMSNorm [#467](https://github.com/RL-Align/RL-Kernel/pull/467 "[WS1][CUDA][Qwen3-Next] C1: zero-centred RMSNorm references and CUDA kernel (RFC #428 stack 2/4)") (Merged) → Gated RMSNorm [#468](https://github.com/RL-Align/RL-Kernel/pull/468 "[WS1][CUDA][Qwen3-Next] Gated RMSNorm CUDA kernel for the GDN block (RFC #428 stack 3/4)") (Merged) → Decode-state contracts [#469](https://github.com/RL-Align/RL-Kernel/pull/469 "[WS1][CUDA][Qwen3-Next] C6: GDN decode-step goldens and recurrent/conv state contract (RFC #428 stack 4/4)") (Merged)
 
-  - **Qwen3-Next integration and reproducibility.** The proposed stack connects MoE routing, TP4 model execution, rollout/recompute checks and fixed-order distributed logprobs. Recorded B200 reruns verify 97/97 batch-invariance cells and invariant digests at 17 TP4 points across 13 NCCL settings. Selected-token logprobs and LSE match TP1 on the same logits; entropy remains TP-degree dependent. An EP4 follow-up verifies 16/16 rollout/recompute cases and 97/97 batch-invariance cells. EP4 retains its own numerical profile, and its training and checkpoint-export paths remain disabled.
+  - **Qwen3-Next integration and reproducibility.** The merged stack connects MoE routing, TP4 model execution, rollout/recompute checks and fixed-order distributed logprobs. Recorded B200 reruns verify 97/97 batch-invariance cells and invariant digests at 17 TP4 points across 13 NCCL settings. Selected-token logprobs and LSE match TP1 on the same logits; entropy remains TP-degree dependent. An EP4 follow-up verifies 16/16 rollout/recompute cases and 97/97 batch-invariance cells. EP4 retains its own numerical profile, and its training and checkpoint-export paths remain disabled.
 
-    MoE route/combine [#503](https://github.com/RL-Align/RL-Kernel/pull/503 "[WS1][CUDA][Qwen3-Next] MoE route/combine contract with a batch-invariant grouped expert GEMM (RFC #428 stack 5/11)") (Open) → TP4 model mixers [#507](https://github.com/RL-Align/RL-Kernel/pull/507 "[WS1][CUDA][Qwen3-Next] TP4 GDN, convolution and D=256 attention mixers on real weights (RFC #428 stack 6/11)") (Open) → Rollout/recompute chain [#543](https://github.com/RL-Align/RL-Kernel/pull/543 "[WS1][CUDA][Qwen3-Next] Full-model chain: vLLM rollout vs VIME recompute, raw-bit through two updates and a reload (RFC #428 stack 7/11)") (Open) → Batch-invariance validation [#544](https://github.com/RL-Align/RL-Kernel/pull/544 "[WS1][CUDA][Qwen3-Next] Batch-invariance matrix for the full model, 97/97 cells bitwise (RFC #428 stack 8/11)") (Open) → Distributed logprob parity [#549](https://github.com/RL-Align/RL-Kernel/pull/549 "[WS1][CUDA][Qwen3-Next] TP distributed logprob parity: fixed reduction order, selected-token logprob exact across NCCL settings (RFC #428 stack 9/11)") (Open) → Expert-parallel rollout/replay [#557](https://github.com/RL-Align/RL-Kernel/pull/557 "[WS1][CUDA][Qwen3-Next] EP4 distributed logprob parity: expert-parallel MoE, full-model L2 bitwise on TP4 x EP4 (RFC #428 stack 10/11)") (Open)
+    MoE route/combine [#503](https://github.com/RL-Align/RL-Kernel/pull/503 "[WS1][CUDA][Qwen3-Next] MoE route/combine contract with a batch-invariant grouped expert GEMM (RFC #428 stack 5/11)") (Merged) → TP4 model mixers [#507](https://github.com/RL-Align/RL-Kernel/pull/507 "[WS1][CUDA][Qwen3-Next] TP4 GDN, convolution and D=256 attention mixers on real weights (RFC #428 stack 6/11)") (Merged) → Rollout/recompute chain [#543](https://github.com/RL-Align/RL-Kernel/pull/543 "[WS1][CUDA][Qwen3-Next] Full-model chain: vLLM rollout vs VIME recompute, raw-bit through two updates and a reload (RFC #428 stack 7/11)") (Merged) → Batch-invariance validation [#544](https://github.com/RL-Align/RL-Kernel/pull/544 "[WS1][CUDA][Qwen3-Next] Batch-invariance matrix for the full model, 97/97 cells bitwise (RFC #428 stack 8/11)") (Merged) → Distributed logprob parity [#549](https://github.com/RL-Align/RL-Kernel/pull/549 "[WS1][CUDA][Qwen3-Next] TP distributed logprob parity: fixed reduction order, selected-token logprob exact across NCCL settings (RFC #428 stack 9/11)") (Merged) → Expert-parallel rollout/replay [#557](https://github.com/RL-Align/RL-Kernel/pull/557 "[WS1][CUDA][Qwen3-Next] EP4 distributed logprob parity: expert-parallel MoE, full-model L2 bitwise on TP4 x EP4 (RFC #428 stack 10/11)") (Merged)
 
   - **Memory-efficient logp backward.** A fused CUDA backward writes the returned gradient directly, with no extra temporary workspace; older builds retain a bounded chunked fallback. For BF16 logits with 32,768 rows and vocabulary 151,936 on one B200, the PR reports forward/backward peak memory falling from 46.37 to 9.27 GiB and median latency from 57.1 to 27.2 ms versus the previous VJP. The peak still includes the returned gradient.
 
@@ -203,6 +193,10 @@ Selected engineering contributions span generative model execution, GPU kernels,
   - **Recursive deterministic autograd.** An independent deterministic LogP path composes reusable VJP/JVP primitives and torch.func rules while retaining the first-order fast path. Fresh single-B200 tests cover derivative orders 1–8 in four precisions, with additional FP64 reverse-mode checks through order 10; hardware skips remain separate from passes. External performance for the expanded contract is unmeasured, and the memory figures above apply only to the generic backward proposal.
 
     Recursive LogP autograd [#547](https://github.com/RL-Align/RL-Kernel/pull/547 "feat(cuda): enable recursive deterministic LogP autograd on B200") (Open)
+
+  - **Distributed training with ring context parallelism.** A 50-block MiniMax-H3 forward/backward step on two four-H100 nodes matched the single-GPU reference for 350 sharded projection gradients. Unsharded parameters were frozen during validation.
+
+    MiniMax-H3 ring context parallelism [#701](https://github.com/RL-Align/RL-Kernel/pull/701 "[WS2][CUDA][MiniMax-H3] ws2 full model: ring context parallel, CP weight gradients and the 50-block H3 on TP x CP x SP, bitwise against the single-GPU run (RFC #420 follow-up 3/3)") (Merged)
 
   </details>
 
@@ -282,7 +276,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-<sub>Selected public contributions · PR status verified 2026-11-16.</sub>
+<sub>Selected public contributions · PR status verified 2026-11-19.</sub>
 
 <!-- OPEN-SOURCE:END -->
 
