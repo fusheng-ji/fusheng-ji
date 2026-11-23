@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "verified_on": "2026-11-19",
+  "verified_on": "2026-11-23",
   "data": {
     "username": "fusheng-ji",
     "introduction": "Selected engineering contributions span generative model execution, GPU kernels, and differentiable rendering. Each repository is an independent project.",
@@ -194,8 +194,8 @@
                     "number": 43152,
                     "url": "https://github.com/sgl-project/sglang/pull/43152",
                     "title": "[Feat] ovis-image: add native Ovis-Image support",
-                    "status": "open",
-                    "draft": false
+                    "status": "draft",
+                    "draft": true
                   }
                 ]
               }
@@ -773,7 +773,7 @@
                     "number": 495,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/495",
                     "title": "perf(logp): fused zero-workspace backward for the generic CUDA fused logp (#174)",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -793,7 +793,7 @@
                     "number": 547,
                     "url": "https://github.com/RL-Align/RL-Kernel/pull/547",
                     "title": "feat(cuda): enable recursive deterministic LogP autograd on B200",
-                    "status": "open",
+                    "status": "merged",
                     "draft": false
                   }
                 ]
@@ -1065,8 +1065,8 @@
                     "number": 2063,
                     "url": "https://github.com/NVIDIA/warp/pull/2063",
                     "title": "Fix half-precision SVD3 NaNs (GH-2055)",
-                    "status": "draft",
-                    "draft": true
+                    "status": "open",
+                    "draft": false
                   }
                 ]
               }

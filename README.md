@@ -92,7 +92,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **Native Ovis-Image integration.** A native pipeline connects checkpoint mapping, text conditioning, CFG, TP/SP, offload, and image serving. The PR reports bitwise agreement with pinned Diffusers for tested single-GPU exact-tier runs on B200; parallel runs are checked against explicit BF16 noise controls. Unsupported features fail with explicit errors.
 
-    Ovis-Image model and serving [#43152](https://github.com/sgl-project/sglang/pull/43152 "[Feat] ovis-image: add native Ovis-Image support") (Open)
+    Ovis-Image model and serving [#43152](https://github.com/sgl-project/sglang/pull/43152 "[Feat] ovis-image: add native Ovis-Image support") (Draft)
 
   - **Request entry to expert state.** Resetting all DiT caches when a request starts covers experts that never execute denoising step zero, preventing stale TeaCache/Spectrum state across requests.
 
@@ -188,11 +188,11 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **Memory-efficient logp backward.** A fused CUDA backward writes the returned gradient directly, with no extra temporary workspace; older builds retain a bounded chunked fallback. For BF16 logits with 32,768 rows and vocabulary 151,936 on one B200, the PR reports forward/backward peak memory falling from 46.37 to 9.27 GiB and median latency from 57.1 to 27.2 ms versus the previous VJP. The peak still includes the returned gradient.
 
-    Fused logp backward [#495](https://github.com/RL-Align/RL-Kernel/pull/495 "perf(logp): fused zero-workspace backward for the generic CUDA fused logp (#174)") (Open)
+    Fused logp backward [#495](https://github.com/RL-Align/RL-Kernel/pull/495 "perf(logp): fused zero-workspace backward for the generic CUDA fused logp (#174)") (Merged)
 
   - **Recursive deterministic autograd.** An independent deterministic LogP path composes reusable VJP/JVP primitives and torch.func rules while retaining the first-order fast path. Fresh single-B200 tests cover derivative orders 1–8 in four precisions, with additional FP64 reverse-mode checks through order 10; hardware skips remain separate from passes. External performance for the expanded contract is unmeasured, and the memory figures above apply only to the generic backward proposal.
 
-    Recursive LogP autograd [#547](https://github.com/RL-Align/RL-Kernel/pull/547 "feat(cuda): enable recursive deterministic LogP autograd on B200") (Open)
+    Recursive LogP autograd [#547](https://github.com/RL-Align/RL-Kernel/pull/547 "feat(cuda): enable recursive deterministic LogP autograd on B200") (Merged)
 
   - **Distributed training with ring context parallelism.** A 50-block MiniMax-H3 forward/backward step on two four-H100 nodes matched the single-GPU reference for 350 sharded projection gradients. Unsharded parameters were frozen during validation.
 
@@ -264,7 +264,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   - **SVD3 forward precision.** Input scaling and FP32 decomposition produce half-precision factors while preserving public signatures and existing adjoints. Reported CPU/B200 tests cover zero, rank-deficient, repeated-singular-value, and scaled inputs. The forward-only contribution remains draft pending maintainer guidance.
 
-    FP16 SVD3 forward [#2063](https://github.com/NVIDIA/warp/pull/2063 "Fix half-precision SVD3 NaNs (GH-2055)") (Draft)
+    FP16 SVD3 forward [#2063](https://github.com/NVIDIA/warp/pull/2063 "Fix half-precision SVD3 NaNs (GH-2055)") (Open)
 
   - **Zero-adjoint SVD gradients.** A separate proposal bypasses reciprocal singular-value gaps when both U/V adjoints are zero, preserving singular-value gradients and preventing unused SVD diagnostics from contaminating other gradients. CPU and B200 regressions cover repeated singular values and small nonzero seeds. Maintainer guidance remains pending; the general nonzero U/V adjoint formula is unchanged, and downstream impact is unmeasured.
 
@@ -276,7 +276,7 @@ Selected engineering contributions span generative model execution, GPU kernels,
 
   </details>
 
-<sub>Selected public contributions · PR status verified 2026-11-19.</sub>
+<sub>Selected public contributions · PR status verified 2026-11-23.</sub>
 
 <!-- OPEN-SOURCE:END -->
 
